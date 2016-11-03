@@ -1,0 +1,6 @@
+framework module FHIR {
+  umbrella header "FHIR-umbrella.h"
+
+  export *
+  module * { export * }
+}

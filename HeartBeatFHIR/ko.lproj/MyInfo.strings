@@ -1,0 +1,31 @@
+// MARK: - MyInfoVC
+
+
+/* Class = "UIViewController"; title = "MyInfo"; ObjectID = "iMA-we-fjd"; */
+"iMA-we-fjd.title" = "내 정보";
+
+/* Class = "UINavigationItem"; title = "MyInfo"; ObjectID = "ODn-OW-Mda"; */
+"ODn-OW-Mda.title" = "내 정보";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "9w0-qj-5S2"; */
+"9w0-qj-5S2.text" = "ID";
+
+/* Class = "UILabel"; text = "Patient ID"; ObjectID = "YIJ-3z-YOi"; */
+"YIJ-3z-YOi.text" = "Patient ID";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Ilk-DE-ZPA"; */
+"Ilk-DE-ZPA.text" = "이름";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "9qn-fj-ieL"; */
+"9qn-fj-ieL.text" = "성별";
+
+/* Class = "UILabel"; text = "Birthdate"; ObjectID = "RkY-m7-Yef"; */
+"RkY-m7-Yef.text" = "생년월일";
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "OAR-ku-BKa"; */
+"OAR-ku-BKa.text" = "연락처";
+
+/* Class = "UITabBarItem"; title = "MyInfo"; ObjectID = "alf-gn-WyH"; */
+"alf-gn-WyH.title" = "내 정보";
+
+

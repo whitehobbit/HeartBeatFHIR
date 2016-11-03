@@ -1,0 +1,766 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D60193911DC9CC9B006312FC /* MyInfo.storyboard */; };
+		D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D601939D1DCAB530006312FC /* InfoPlist.strings */; };
+		D60193A01DCAB733006312FC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D601939F1DCAB733006312FC /* Info.plist */; };
+		D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454B71DC7520D00D61917 /* AppDelegate.swift */; };
+		D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454BB1DC7520D00D61917 /* Main.storyboard */; };
+		D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62454BE1DC7520D00D61917 /* Assets.xcassets */; };
+		D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */; };
+		D62454CD1DC7520D00D61917 /* HeartBeatFHIRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */; };
+		D62454D81DC7520D00D61917 /* HeartBeatFHIRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */; };
+		D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */; };
+		D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */; };
+		D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */; };
+		D6A72ABE1DC752C600DD2C66 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */; };
+		D6A72AC81DC7532A00DD2C66 /* AllHealthKitDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC01DC7532A00DD2C66 /* AllHealthKitDataVC.swift */; };
+		D6A72AC91DC7532A00DD2C66 /* DetailHealthKitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC11DC7532A00DD2C66 /* DetailHealthKitVC.swift */; };
+		D6A72ACA1DC7532A00DD2C66 /* FhirServerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC21DC7532A00DD2C66 /* FhirServerVC.swift */; };
+		D6A72ACB1DC7532A00DD2C66 /* HealthKitGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC31DC7532A00DD2C66 /* HealthKitGraphVC.swift */; };
+		D6A72ACC1DC7532A00DD2C66 /* JoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC41DC7532A00DD2C66 /* JoinVC.swift */; };
+		D6A72ACD1DC7532A00DD2C66 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC51DC7532A00DD2C66 /* LoginVC.swift */; };
+		D6A72ACE1DC7532A00DD2C66 /* SelectDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC61DC7532A00DD2C66 /* SelectDateVC.swift */; };
+		D6A72ACF1DC7532A00DD2C66 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC71DC7532A00DD2C66 /* SettingVC.swift */; };
+		D6A72AD61DC753AA00DD2C66 /* ChartsDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */; };
+		D6A72AD71DC753AA00DD2C66 /* FhirJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */; };
+		D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */; };
+		D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A72AD91DC7545500DD2C66 /* HealthKit.framework */; };
+		FCE627FFA93E6E95F0346A7C /* Pods_HeartBeatFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D62454C91DC7520D00D61917 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D62454AC1DC7520C00D61917 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D62454B31DC7520C00D61917;
+			remoteInfo = HeartBeatFHIR;
+		};
+		D62454D41DC7520D00D61917 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D62454AC1DC7520C00D61917 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D62454B31DC7520C00D61917;
+			remoteInfo = HeartBeatFHIR;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.debug.xcconfig"; sourceTree = "<group>"; };
+		D601938D1DC9A98B006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		D601938E1DC9A98B006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D60193921DC9CCAE006312FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyInfo.storyboard; sourceTree = "<group>"; };
+		D60193951DC9CD39006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MyInfo.strings; sourceTree = "<group>"; };
+		D601939C1DCAB530006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D601939F1DCAB733006312FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartBeatFHIR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62454B71DC7520D00D61917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D62454BC1DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D62454BE1DC7520D00D61917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D62454C11DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatFHIRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatFHIRTests.swift; sourceTree = "<group>"; };
+		D62454CE1DC7520D00D61917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatFHIRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatFHIRUITests.swift; sourceTree = "<group>"; };
+		D62454D91DC7520D00D61917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoVC.swift; path = ViewController/MyInfoVC.swift; sourceTree = "<group>"; };
+		D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FhirServer.storyboard; sourceTree = "<group>"; };
+		D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HealthKit.storyboard; sourceTree = "<group>"; };
+		D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		D6A72AC01DC7532A00DD2C66 /* AllHealthKitDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllHealthKitDataVC.swift; path = ViewController/AllHealthKitDataVC.swift; sourceTree = "<group>"; };
+		D6A72AC11DC7532A00DD2C66 /* DetailHealthKitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailHealthKitVC.swift; path = ViewController/DetailHealthKitVC.swift; sourceTree = "<group>"; };
+		D6A72AC21DC7532A00DD2C66 /* FhirServerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FhirServerVC.swift; path = ViewController/FhirServerVC.swift; sourceTree = "<group>"; };
+		D6A72AC31DC7532A00DD2C66 /* HealthKitGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthKitGraphVC.swift; path = ViewController/HealthKitGraphVC.swift; sourceTree = "<group>"; };
+		D6A72AC41DC7532A00DD2C66 /* JoinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinVC.swift; path = ViewController/JoinVC.swift; sourceTree = "<group>"; };
+		D6A72AC51DC7532A00DD2C66 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ViewController/LoginVC.swift; sourceTree = "<group>"; };
+		D6A72AC61DC7532A00DD2C66 /* SelectDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectDateVC.swift; path = ViewController/SelectDateVC.swift; sourceTree = "<group>"; };
+		D6A72AC71DC7532A00DD2C66 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingVC.swift; path = ViewController/SettingVC.swift; sourceTree = "<group>"; };
+		D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDefaultSetting.swift; sourceTree = "<group>"; };
+		D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FhirJsonManager.swift; sourceTree = "<group>"; };
+		D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		D6A72AD91DC7545500DD2C66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeartBeatFHIR.entitlements; sourceTree = "<group>"; };
+		E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeartBeatFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D62454B11DC7520C00D61917 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCE627FFA93E6E95F0346A7C /* Pods_HeartBeatFHIR.framework in Frameworks */,
+				D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454C51DC7520D00D61917 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454D01DC7520D00D61917 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8320AEF7712651CE9AF0D988 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */,
+				F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B084568A6AD5AA03F146937C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AD91DC7545500DD2C66 /* HealthKit.framework */,
+				E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D62454AB1DC7520C00D61917 = {
+			isa = PBXGroup;
+			children = (
+				D62454B61DC7520D00D61917 /* HeartBeatFHIR */,
+				D62454CB1DC7520D00D61917 /* HeartBeatFHIRTests */,
+				D62454D61DC7520D00D61917 /* HeartBeatFHIRUITests */,
+				D62454B51DC7520D00D61917 /* Products */,
+				8320AEF7712651CE9AF0D988 /* Pods */,
+				B084568A6AD5AA03F146937C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D62454B51DC7520D00D61917 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */,
+				D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */,
+				D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D62454B61DC7520D00D61917 /* HeartBeatFHIR */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */,
+				D6A72AB61DC752B500DD2C66 /* storyboard */,
+				D6A72AD01DC7533200DD2C66 /* VC */,
+				D62454B71DC7520D00D61917 /* AppDelegate.swift */,
+				D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */,
+				D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */,
+				D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */,
+				D62454BB1DC7520D00D61917 /* Main.storyboard */,
+				D62454BE1DC7520D00D61917 /* Assets.xcassets */,
+				D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */,
+				D601939F1DCAB733006312FC /* Info.plist */,
+				D601939D1DCAB530006312FC /* InfoPlist.strings */,
+			);
+			path = HeartBeatFHIR;
+			sourceTree = "<group>";
+		};
+		D62454CB1DC7520D00D61917 /* HeartBeatFHIRTests */ = {
+			isa = PBXGroup;
+			children = (
+				D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */,
+				D62454CE1DC7520D00D61917 /* Info.plist */,
+			);
+			path = HeartBeatFHIRTests;
+			sourceTree = "<group>";
+		};
+		D62454D61DC7520D00D61917 /* HeartBeatFHIRUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */,
+				D62454D91DC7520D00D61917 /* Info.plist */,
+			);
+			path = HeartBeatFHIRUITests;
+			sourceTree = "<group>";
+		};
+		D6A72AB31DC7527B00DD2C66 /* 1st Tab MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */,
+			);
+			name = "1st Tab MyInfo";
+			sourceTree = "<group>";
+		};
+		D6A72AB61DC752B500DD2C66 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */,
+				D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */,
+				D60193911DC9CC9B006312FC /* MyInfo.storyboard */,
+				D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */,
+			);
+			name = storyboard;
+			sourceTree = "<group>";
+		};
+		D6A72ABF1DC7530E00DD2C66 /* 2nd Tab HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AC01DC7532A00DD2C66 /* AllHealthKitDataVC.swift */,
+				D6A72AC11DC7532A00DD2C66 /* DetailHealthKitVC.swift */,
+				D6A72AC31DC7532A00DD2C66 /* HealthKitGraphVC.swift */,
+				D6A72AC61DC7532A00DD2C66 /* SelectDateVC.swift */,
+			);
+			name = "2nd Tab HealthKit";
+			sourceTree = "<group>";
+		};
+		D6A72AD01DC7533200DD2C66 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AC41DC7532A00DD2C66 /* JoinVC.swift */,
+				D6A72AC51DC7532A00DD2C66 /* LoginVC.swift */,
+				D6A72AB31DC7527B00DD2C66 /* 1st Tab MyInfo */,
+				D6A72ABF1DC7530E00DD2C66 /* 2nd Tab HealthKit */,
+				D6A72AD11DC7534D00DD2C66 /* 3rd Tab FHIRServer */,
+				D6A72AD21DC7536700DD2C66 /* 4th Tab Setting */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		D6A72AD11DC7534D00DD2C66 /* 3rd Tab FHIRServer */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AC21DC7532A00DD2C66 /* FhirServerVC.swift */,
+			);
+			name = "3rd Tab FHIRServer";
+			sourceTree = "<group>";
+		};
+		D6A72AD21DC7536700DD2C66 /* 4th Tab Setting */ = {
+			isa = PBXGroup;
+			children = (
+				D6A72AC71DC7532A00DD2C66 /* SettingVC.swift */,
+			);
+			name = "4th Tab Setting";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D62454B31DC7520C00D61917 /* HeartBeatFHIR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIR" */;
+			buildPhases = (
+				64557599360A8C620022BEC2 /* [CP] Check Pods Manifest.lock */,
+				D62454B01DC7520C00D61917 /* Sources */,
+				D62454B11DC7520C00D61917 /* Frameworks */,
+				D62454B21DC7520C00D61917 /* Resources */,
+				30E1467D3F9079B598622FEC /* [CP] Embed Pods Frameworks */,
+				E2F45FE33301EEC81A2C3B7D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeartBeatFHIR;
+			productName = HeartBeatFHIR;
+			productReference = D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D62454C71DC7520D00D61917 /* HeartBeatFHIRTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D62454DF1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRTests" */;
+			buildPhases = (
+				D62454C41DC7520D00D61917 /* Sources */,
+				D62454C51DC7520D00D61917 /* Frameworks */,
+				D62454C61DC7520D00D61917 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D62454CA1DC7520D00D61917 /* PBXTargetDependency */,
+			);
+			name = HeartBeatFHIRTests;
+			productName = HeartBeatFHIRTests;
+			productReference = D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D62454D21DC7520D00D61917 /* HeartBeatFHIRUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D62454E21DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRUITests" */;
+			buildPhases = (
+				D62454CF1DC7520D00D61917 /* Sources */,
+				D62454D01DC7520D00D61917 /* Frameworks */,
+				D62454D11DC7520D00D61917 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D62454D51DC7520D00D61917 /* PBXTargetDependency */,
+			);
+			name = HeartBeatFHIRUITests;
+			productName = HeartBeatFHIRUITests;
+			productReference = D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D62454AC1DC7520C00D61917 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = WhiteHobbit;
+				TargetAttributes = {
+					D62454B31DC7520C00D61917 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = E3K4HTC5RG;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
+					};
+					D62454C71DC7520D00D61917 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = E3K4HTC5RG;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D62454B31DC7520C00D61917;
+					};
+					D62454D21DC7520D00D61917 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = E3K4HTC5RG;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D62454B31DC7520C00D61917;
+					};
+				};
+			};
+			buildConfigurationList = D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HeartBeatFHIR" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D62454AB1DC7520C00D61917;
+			productRefGroup = D62454B51DC7520D00D61917 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D62454B31DC7520C00D61917 /* HeartBeatFHIR */,
+				D62454C71DC7520D00D61917 /* HeartBeatFHIRTests */,
+				D62454D21DC7520D00D61917 /* HeartBeatFHIRUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D62454B21DC7520C00D61917 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */,
+				D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */,
+				D60193A01DCAB733006312FC /* Info.plist in Resources */,
+				D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */,
+				D6A72ABE1DC752C600DD2C66 /* Setting.storyboard in Resources */,
+				D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */,
+				D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */,
+				D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */,
+				D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454C61DC7520D00D61917 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454D11DC7520D00D61917 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30E1467D3F9079B598622FEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64557599360A8C620022BEC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E2F45FE33301EEC81A2C3B7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D62454B01DC7520C00D61917 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6A72AD61DC753AA00DD2C66 /* ChartsDefaultSetting.swift in Sources */,
+				D6A72ACB1DC7532A00DD2C66 /* HealthKitGraphVC.swift in Sources */,
+				D6A72AD71DC753AA00DD2C66 /* FhirJsonManager.swift in Sources */,
+				D6A72ACC1DC7532A00DD2C66 /* JoinVC.swift in Sources */,
+				D6A72ACD1DC7532A00DD2C66 /* LoginVC.swift in Sources */,
+				D6A72AC91DC7532A00DD2C66 /* DetailHealthKitVC.swift in Sources */,
+				D6A72ACA1DC7532A00DD2C66 /* FhirServerVC.swift in Sources */,
+				D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */,
+				D6A72AC81DC7532A00DD2C66 /* AllHealthKitDataVC.swift in Sources */,
+				D6A72ACF1DC7532A00DD2C66 /* SettingVC.swift in Sources */,
+				D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */,
+				D6A72ACE1DC7532A00DD2C66 /* SelectDateVC.swift in Sources */,
+				D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454C41DC7520D00D61917 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D62454CD1DC7520D00D61917 /* HeartBeatFHIRTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D62454CF1DC7520D00D61917 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D62454D81DC7520D00D61917 /* HeartBeatFHIRUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D62454CA1DC7520D00D61917 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D62454B31DC7520C00D61917 /* HeartBeatFHIR */;
+			targetProxy = D62454C91DC7520D00D61917 /* PBXContainerItemProxy */;
+		};
+		D62454D51DC7520D00D61917 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D62454B31DC7520C00D61917 /* HeartBeatFHIR */;
+			targetProxy = D62454D41DC7520D00D61917 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D60193911DC9CC9B006312FC /* MyInfo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D60193921DC9CCAE006312FC /* Base */,
+				D60193951DC9CD39006312FC /* ko */,
+			);
+			name = MyInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		D601939D1DCAB530006312FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D601939C1DCAB530006312FC /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D62454BB1DC7520D00D61917 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D62454BC1DC7520D00D61917 /* Base */,
+				D601938D1DC9A98B006312FC /* ko */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D62454C11DC7520D00D61917 /* Base */,
+				D601938E1DC9A98B006312FC /* ko */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D62454DA1DC7520D00D61917 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D62454DB1DC7520D00D61917 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D62454DD1DC7520D00D61917 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D62454DE1DC7520D00D61917 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D62454E01DC7520D00D61917 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIRTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeartBeatFHIR.app/HeartBeatFHIR";
+			};
+			name = Debug;
+		};
+		D62454E11DC7520D00D61917 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIRTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeartBeatFHIR.app/HeartBeatFHIR";
+			};
+			name = Release;
+		};
+		D62454E31DC7520D00D61917 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = HeartBeatFHIR;
+			};
+			name = Debug;
+		};
+		D62454E41DC7520D00D61917 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = E3K4HTC5RG;
+				INFOPLIST_FILE = HeartBeatFHIRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = HeartBeatFHIR;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HeartBeatFHIR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D62454DA1DC7520D00D61917 /* Debug */,
+				D62454DB1DC7520D00D61917 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D62454DD1DC7520D00D61917 /* Debug */,
+				D62454DE1DC7520D00D61917 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D62454DF1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D62454E01DC7520D00D61917 /* Debug */,
+				D62454E11DC7520D00D61917 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D62454E21DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D62454E31DC7520D00D61917 /* Debug */,
+				D62454E41DC7520D00D61917 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D62454AC1DC7520C00D61917 /* Project object */;
+}

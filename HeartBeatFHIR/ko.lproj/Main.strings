@@ -1,0 +1,101 @@
+// MARK: - LoginVC
+
+
+/* Class = "UIViewController"; title = "Login"; ObjectID = "P4o-B4-FYK"; */
+"P4o-B4-FYK.title" = "Login";
+
+/* Class = "UILabel"; text = "LOGIN"; ObjectID = "LBc-oQ-uA3"; */
+"LBc-oQ-uA3.text" = "LOGIN";
+
+/* Class = "UITextField"; placeholder = "ID"; ObjectID = "xNB-Cl-gqQ"; */
+"xNB-Cl-gqQ.placeholder" = "ID";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "f0a-F7-ytI"; */
+"f0a-F7-ytI.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "LogIn"; ObjectID = "w2T-tj-ox0"; */
+"w2T-tj-ox0.normalTitle" = "로그인";
+
+/* Class = "UIButton"; normalTitle = "Join"; ObjectID = "Hna-02-Czw"; */
+"Hna-02-Czw.normalTitle" = "회원가입";
+
+
+
+
+// MARK: - JoinVC
+
+
+/* Class = "UIViewController"; title = "Join"; ObjectID = "RYW-jy-Lnn"; */
+"RYW-jy-Lnn.title" = "Join";
+
+/* Class = "UILabel"; text = "JOIN"; ObjectID = "s8u-kL-ZMc"; */
+"s8u-kL-ZMc.text" = "JOIN";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "pQz-qR-BKg"; */
+"pQz-qR-BKg.text" = "ID";
+
+/* Class = "UITextField"; placeholder = "please enter your ID"; ObjectID = "eHz-cx-S01"; */
+"eHz-cx-S01.placeholder" = "사용하실 ID를 입력해주세요";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "2c9-tX-dnX"; */
+"2c9-tX-dnX.text" = "비밀번호";
+
+/* Class = "UITextField"; placeholder = "please enter your password"; ObjectID = "vWp-LL-J6H"; */
+"vWp-LL-J6H.placeholder" = "사용하실 비밀번호를 입력해주세요";
+
+/* Class = "UITextField"; placeholder = "repeat your password"; ObjectID = "SD9-k1-pob"; */
+"SD9-k1-pob.placeholder" = "비밀번호 재입력";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "5W1-uu-BM5"; */
+"5W1-uu-BM5.text" = "이름";
+
+/* Class = "UITextField"; placeholder = "given"; ObjectID = "qb2-yF-aBW"; */
+"qb2-yF-aBW.placeholder" = "이름";
+
+/* Class = "UITextField"; placeholder = "family"; ObjectID = "zfP-HH-P7c"; */
+"zfP-HH-P7c.placeholder" = "성";
+
+/* Class = "UILabel"; text = "Birthdate"; ObjectID = "UuD-v2-AEw"; */
+"UuD-v2-AEw.text" = "생년월일";
+
+/* Class = "UITextField"; placeholder = "1991.01.01"; ObjectID = "sBu-M1-xQ4"; */
+"sBu-M1-xQ4.placeholder" = "1991.01.01";
+
+/* Class = "UILabel"; text = "Tel"; ObjectID = "jX6-tq-z2T"; */
+"jX6-tq-z2T.text" = "연락처";
+
+/* Class = "UITextField"; placeholder = "010-0000-0000"; ObjectID = "2L4-4Z-Bdy"; */
+"2L4-4Z-Bdy.placeholder" = "010-0000-0000";
+
+/* Class = "UILabel"; text = " "; ObjectID = "vbW-Eq-mKi"; */
+"vbW-Eq-mKi.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Join"; ObjectID = "sPN-bj-zmt"; */
+"sPN-bj-zmt.normalTitle" = "회원가입";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "wiZ-3x-NDr"; */
+"wiZ-3x-NDr.normalTitle" = "취소";
+
+
+
+
+
+// MARK: - Tabbar
+
+
+/* Class = "UITabBarController"; title = "TabBar"; ObjectID = "WL6-nt-EoA"; */
+"WL6-nt-EoA.title" = "TabBar";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "4fE-cL-JOT"; */
+"4fE-cL-JOT.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "6Xg-VM-T1G"; */
+"6Xg-VM-T1G.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "JEb-26-1hf"; */
+"JEb-26-1hf.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "YGV-KU-8vx"; */
+"YGV-KU-8vx.title" = "Item";
+
+

@@ -30,16 +30,16 @@ class JoinVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // TODO: - DB와의 연동을 통해 데이터 저장이 필요
     @IBAction func clickJoinBtn(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "joinToLogin", sender: self)
+        self.performSegue(withIdentifier: "toLoginVC", sender: self)
     }
-
+    
     @IBAction func clickCancelBtn(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "joinToLogin", sender: self)
+        self.performSegue(withIdentifier: "toLoginVC", sender: self)
     }
     
     // MARK: - Navigation
-    // TODO: - JoinVC와 LoginVC 시그먼트 연결 필요
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

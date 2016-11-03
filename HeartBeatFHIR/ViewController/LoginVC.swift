@@ -28,7 +28,7 @@ class LoginVC: UIViewController {
     @IBAction func clickedlogin(_ sender: AnyObject) {
         isLogined = true;
         if checkLogin() {
-            self.performSegue(withIdentifier: "loginToTabBar", sender: self)
+            self.performSegue(withIdentifier: "toTabbarVC", sender: self)
         }
     }
     
@@ -89,11 +89,15 @@ class LoginVC: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         dump(segue.destination.description)
-        let nextVC = segue.destination as! UITabBarController
-        let myInfoVC = nextVC.viewControllers?.first?.childViewControllers.first as? MyInfoVC
-        myInfoVC?.userInfo = getFhirPatient()
+        if segue.identifier == "toTabbarVC" {
+            let nextVC = segue.destination as! UITabBarController
+            let myInfoVC = nextVC.viewControllers?.first?.childViewControllers.first as? MyInfoVC
+            myInfoVC?.userInfo = getFhirPatient()
 
-        print("myInfoVC: ");dump(myInfoVC?.userInfo)
+            print("myInfoVC: ");dump(myInfoVC?.userInfo)
+        } else if segue.identifier == "toJoinVC" {
+            
+        }
     }
  
 

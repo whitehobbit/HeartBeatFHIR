@@ -57,7 +57,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RYW-jy-Lnn" kind="show" id="L0m-hw-FRf"/>
+                                    <segue destination="RYW-jy-Lnn" kind="show" identifier="toJoinVC" id="2jr-8T-hEm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-tj-ox0">
@@ -103,7 +103,7 @@
                     <connections>
                         <outlet property="idTextField" destination="xNB-Cl-gqQ" id="D3G-fV-h7R"/>
                         <outlet property="passwordTextField" destination="f0a-F7-ytI" id="AZg-F4-gN5"/>
-                        <segue destination="WL6-nt-EoA" kind="showDetail" identifier="loginToTabBar" animates="NO" action="showViewController:sender:" id="kgz-dY-UnD"/>
+                        <segue destination="WL6-nt-EoA" kind="showDetail" identifier="toTabbarVC" animates="NO" action="showViewController:sender:" id="kgz-dY-UnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80Y-45-b4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +400,7 @@
                         <outlet property="pw1TextField" destination="vWp-LL-J6H" id="AMy-VR-4Sk"/>
                         <outlet property="pw2TextField" destination="SD9-k1-pob" id="p7c-Pj-sfv"/>
                         <outlet property="telecomeTextField" destination="2L4-4Z-Bdy" id="cMY-XD-0Uo"/>
-                        <segue destination="P4o-B4-FYK" kind="show" identifier="joinToLogin" id="qwb-iA-fAN"/>
+                        <segue destination="P4o-B4-FYK" kind="show" identifier="toLoginVC" id="qwb-iA-fAN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m3A-VC-rce" userLabel="First Responder" sceneMemberID="firstResponder"/>

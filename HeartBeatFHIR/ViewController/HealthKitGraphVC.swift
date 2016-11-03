@@ -15,7 +15,8 @@ class HealthKitGraphVC: UIViewController {
     private var heartRateKey = [String]()
     private var heartRatesDic = [String : [String : Int]]() //
     
-    var heartRatesDicKey = [String]() // [date]
+//    TODO: - 아래 데이터 구조로의 변환이 필요
+    var heartRateDicKey = [String]() // [date]
     var heartRateDic = [String: [Int]]() // date: [value]
     var healthDic = [String: [HKQuantitySample]]()
     

@@ -169,7 +169,6 @@
 				D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */,
 				D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */,
 				D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */,
-				D62454BB1DC7520D00D61917 /* Main.storyboard */,
 				D62454BE1DC7520D00D61917 /* Assets.xcassets */,
 				D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */,
 				D601939F1DCAB733006312FC /* Info.plist */,
@@ -207,6 +206,7 @@
 		D6A72AB61DC752B500DD2C66 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				D62454BB1DC7520D00D61917 /* Main.storyboard */,
 				D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */,
 				D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */,
 				D60193911DC9CC9B006312FC /* MyInfo.storyboard */,

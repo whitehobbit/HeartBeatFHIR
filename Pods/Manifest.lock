@@ -1,10 +1,14 @@
 PODS:
+  - Alamofire (4.0.1)
   - FHIR (2.8)
   - SwiftCharts (0.4)
+  - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - FHIR (from `https://github.com/smart-on-fhir/Swift-FHIR.git`)
   - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
+  - SwiftyJSON (~> 3.1)
 
 EXTERNAL SOURCES:
   FHIR:
@@ -21,9 +25,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/i-schuetz/SwiftCharts.git
 
 SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   FHIR: ca44db7eb05a8a82b9ae32be95f8632e2e068fb2
   SwiftCharts: 84b43d9d70b791459ff5f50ae5a6704326de309d
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 3c6fe0638501081e12efa9004eb81e93fdb4beb2
+PODFILE CHECKSUM: 74f756d5fcf945c38cefc2770063b345971897a9
 
 COCOAPODS: 1.0.1

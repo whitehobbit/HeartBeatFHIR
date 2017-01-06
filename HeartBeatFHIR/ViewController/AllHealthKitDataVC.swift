@@ -33,9 +33,9 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.setTableData()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.rowHeight = 60
+        self.tableView.cornerRadius = 7.0
+        self.reloadTable()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +63,7 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
     func setTableData() {
         self.heartRateDic.removeAll()
         self.heartRateDateKeys.removeAll()
@@ -100,8 +101,12 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
         self.heartRateDateKeys.append(beforeDate!)
         self.heartRateDateDic[beforeDate!] = "\(minHeartRate) - \(maxHeartRate)"
         
+    }
+    
+    func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            return
         }
     }
     

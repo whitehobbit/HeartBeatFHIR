@@ -8,6 +8,8 @@
 
 import XCTest
 @testable import HeartBeatFHIR
+import Alamofire
+import FHIR
 
 class HeartBeatFHIRTests: XCTestCase {
     
@@ -22,8 +24,6 @@ class HeartBeatFHIRTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {

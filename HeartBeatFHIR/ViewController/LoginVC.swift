@@ -8,6 +8,7 @@
 
 import UIKit
 import FHIR
+import SwiftyJSON
 
 class LoginVC: UIViewController {
 
@@ -96,7 +97,7 @@ class LoginVC: UIViewController {
 
             print("myInfoVC: ");dump(myInfoVC?.userInfo)
         } else if segue.identifier == "toJoinVC" {
-            
+
         }
     }
  

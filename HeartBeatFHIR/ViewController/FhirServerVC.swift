@@ -8,6 +8,8 @@
 
 import UIKit
 import FHIR
+import Alamofire
+import SwiftyJSON
 
 class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -24,13 +26,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +35,8 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewWillAppear(animated)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.rowHeight = 60
+        self.tableView.cornerRadius = 7.0
         self.getFHIR()
     }
 
@@ -72,41 +70,22 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, 
-    canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            return
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    // MARK: - 테이블셀 사이즈에 맞춰 테이블뷰 조절
+    func tableViewAutoHeight() {
+        if self.tableView.contentSize.height < self.tableView.frame.height {
+            var frame: CGRect = self.tableView.frame
+            frame.size.height = self.tableView.contentSize.height
+            self.tableView.frame = frame
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -117,71 +96,98 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Pass the selected object to the new view controller.
     }
     */
+    
     func getFHIR() {
-        var user = prefs.dictionary(forKey: "userLoginInfo")!
-        let search = Observation.search([
-            "code" : "8867-4",
-            "patient" : user["patientId"]!
-            ])
+        let user = prefs.dictionary(forKey: "userLoginInfo")!
+        let (code, pId) = ("8867-4", user["patientId"] as! String)
         
         var heartRateDicTemp = [String: [Int]]()
         var heartRateKeyTemp = [String]()
         
-        search.perform(fhirServer) { (bundle, error) in
-            if error != nil {
-                dump(error)
-            } else {
-                var bundleEntry = [BundleEntry]()
-                var bund = bundle
-                for entry in (bundle?.entry)! {
-                    bundleEntry.append(entry)
-                }
-//                print("\n\ncount: \(bundleEntry.count)")
+        var searchUrl = fhirServer.baseURL.absoluteString + Observation.resourceType + "?patient=" + pId + "&code=" + code
+ 
+        Alamofire.request(searchUrl).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let total = JSON(value)["total"].stringValue
+                searchUrl = searchUrl + "&_count=" + total
+                print("in: \(searchUrl)")
                 
-                while (bund?.link?.contains { element in
-                    bund?.link?.removeAll()
-                    if element.relation == "next" {
-                        bund?.link?.append(element)
-                        return true
-                    } else {
-                        return false
+                Alamofire.request(searchUrl).validate().responseJSON { res in
+                    
+                    switch res.result {
+                    case .success(let value):
+                        let bundleJson = JSON(value)
+                        print(bundleJson["entry"].count)
+                    case .failure(let error):
+                        print(error)
                     }
-                    })! {
-                        let url = (bund?.link?.first?.url?.absoluteURL)!
-                        bund = FHIR.Bundle(json: FhirJsonManager.getFhirJson(url: url))
-                        for entry in (bund?.entry)! {
-                            bundleEntry.append(entry)
-                        }
+                    
                 }
-//                print("\n\ncount: \(bundleEntry.count)")
-                
-                for entry in bundleEntry {
-                    let json = FhirJsonManager.getFhirJson(url: (entry.fullUrl?.absoluteURL)!)
-                    FhirJsonManager.printJsonPretty(json!)
-                    let obs = Observation(json: json)
-                    let date = self.dateFormatter.string(from: (obs.effectiveDateTime?.nsDate)!)
-                    let value: Int = (obs.valueQuantity?.value?.intValue)!
-//                    print("value: "); dump(value)
-                    if heartRateDicTemp[date] == nil {
-                        heartRateDicTemp[date] = [Int]()
-                        self.obsDic[date] = [Observation]()
-                    }
-                    if !(heartRateKeyTemp.contains(date)) {
-                        heartRateKeyTemp.append(date)
-                    }
-                    heartRateDicTemp[date]?.append(value)
-                    self.obsDic[date]?.append(obs)
-//                    print("heartRateDicTemp: \(date)"); dump(heartRateDicTemp)
-//                    print("heartRateKeyTemp: "); dump(heartRateKeyTemp)
-                }
-                self.heartRateDicKey = heartRateKeyTemp.sorted().reversed()
-                dump(self.heartRateDicKey)
-                self.heartRateDic = heartRateDicTemp
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
         }
+//        let search = Observation.search([
+//            "code" : "8867-4",
+//            "patient" : user["patientId"]!
+//            ])
+//        
+//        search.perform(fhirServer) { (bundle, error) in
+//            if error != nil {
+//                dump(error)
+//            } else {
+//                var bundleEntry = [BundleEntry]()
+//                var bund = bundle
+//                for entry in (bundle?.entry)! {
+//                    bundleEntry.append(entry)
+//                }
+////                print("\n\ncount: \(bundleEntry.count)")
+//                
+//                while (bund?.link?.contains { element in
+//                    bund?.link?.removeAll()
+//                    if element.relation == "next" {
+//                        bund?.link?.append(element)
+//                        return true
+//                    } else {
+//                        return false
+//                    }
+//                    })! {
+//                        let url = (bund?.link?.first?.url?.absoluteURL)!
+//                        bund = FHIR.Bundle(json: FhirJsonManager.getFhirJson(url: url))
+//                        for entry in (bund?.entry)! {
+//                            bundleEntry.append(entry)
+//                        }
+//                }
+////                print("\n\ncount: \(bundleEntry.count)")
+//                
+//                for entry in bundleEntry {
+//                    let json = FhirJsonManager.getFhirJson(url: (entry.fullUrl?.absoluteURL)!)
+//                    FhirJsonManager.printJsonPretty(json!)
+//                    let obs = Observation(json: json)
+//                    let date = self.dateFormatter.string(from: (obs.effectiveDateTime?.nsDate)!)
+//                    let value: Int = (obs.valueQuantity?.value?.intValue)!
+////                    print("value: "); dump(value)
+//                    if heartRateDicTemp[date] == nil {
+//                        heartRateDicTemp[date] = [Int]()
+//                        self.obsDic[date] = [Observation]()
+//                    }
+//                    if !(heartRateKeyTemp.contains(date)) {
+//                        heartRateKeyTemp.append(date)
+//                    }
+//                    heartRateDicTemp[date]?.append(value)
+//                    self.obsDic[date]?.append(obs)
+////                    print("heartRateDicTemp: \(date)"); dump(heartRateDicTemp)
+////                    print("heartRateKeyTemp: "); dump(heartRateKeyTemp)
+//                }
+//                self.heartRateDicKey = heartRateKeyTemp.sorted().reversed()
+//                dump(self.heartRateDicKey)
+//                self.heartRateDic = heartRateDicTemp
+//            }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
         
     }
 }

@@ -11,20 +11,11 @@ import SwiftCharts
 import HealthKit
 
 class HealthKitGraphVC: UIViewController {
-    private var chart: Chart?
-    private var heartRateKey = [String]()
-    private var heartRatesDic = [String : [String : Int]]() //
     
-//    TODO: - 아래 데이터 구조로의 변환이 필요
-    var heartRateDicKey = [String]() // [date]
-    var heartRateDic = [String: [Int]]() // date: [value]
-    var healthDic = [String: [HKQuantitySample]]()
-    
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM.dd"
-        return formatter
-    }()
+    private var chart: Chart? = nil
+    private var heartRateDicKey = [String]() // [date]
+    private var heartRateDic = [String: [Int]]() // date: [value]
+    private let dateFormatter = DateFormatter()
     
     @IBOutlet weak var lastHeartRate: UILabel!
     @IBOutlet weak var minHeartRate: UILabel!
@@ -32,7 +23,6 @@ class HealthKitGraphVC: UIViewController {
     @IBOutlet weak var lastDate: UILabel!
     @IBOutlet weak var lastTime: UILabel!
     @IBOutlet weak var chartView: UIView!
-    @IBOutlet weak var healthKitTabBarItem: UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +31,12 @@ class HealthKitGraphVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dateFormatter.dateFormat = "MM. dd"
         print("=================== viewWillAppear ===================")
         self.chartView.backgroundColor = UIColor.white
         self.setDataArea()
+        self.setLastHeartRateData()
+        //dump(self.heartRateDic)
         if chart == nil {
             chart = self.barsChart()
             chart?.view.translatesAutoresizingMaskIntoConstraints = true
@@ -57,8 +50,8 @@ class HealthKitGraphVC: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print("=================== viewWillLayoutSubview ===================")
-        print("\nchartView.bounds: \(self.chartView.bounds)\nchartView.frmae: \(self.chartView.frame)")
+//        print("=================== viewWillLayoutSubview ===================")
+        //print("\nchartView.bounds: \(self.chartView.bounds)\nchartView.frmae: \(self.chartView.frame)")
         if chart == nil {
             chart = self.barsChart()
             chart?.view.translatesAutoresizingMaskIntoConstraints = true
@@ -70,7 +63,7 @@ class HealthKitGraphVC: UIViewController {
     }
     
     func showChart() {
-        print("=================== showChart ===================")
+//        print("=================== showChart ===================")
         if self.chart == nil {
             self.chart = self.barsChart()
             
@@ -81,8 +74,6 @@ class HealthKitGraphVC: UIViewController {
         }
         self.chartView.addSubview((chart?.view)!)
         
-//        chart?.view.center = CGPoint(x: chartView.bounds.midX, y: chartView.bounds.midY)
-//        chart?.view.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,25 +82,23 @@ class HealthKitGraphVC: UIViewController {
     }
     
     func barsChart() -> Chart? {
-        print("=================== basrChart ===================")
-        
-        print("chartView.frame: \(chartView.frame) \nchartView.bounds: \(self.chartView.bounds)")
-        
+        //print("=================== basrChart ===================")
         let labelSettings = ChartLabelSettings(font: ChartsDefaultSetting.labelFont)
         
-        let barsData: [(title: String, min: Double, max: Double)] = {
-            var data = [(title: String, min: Double, max: Double)]()
-            data.removeAll()
-            for key in self.heartRateKey.reversed() {
-                data.append((key, Double(self.heartRatesDic[key]!["min"]!), Double(self.heartRatesDic[key]!["max"]!)))
+        var barsData = [(title: String, min: Double, max: Double)]()
+        
+        for key in self.heartRateDicKey.reversed() {
+            if let min = self.heartRateDic[key]?.min(), let max = self.heartRateDic[key]?.max() {
+                barsData.append((key, Double(min), Double(max)))
+            } else {
+                barsData.append((key, 0, 0))
             }
-            return data
-        }()
+        }
         
         let alpha: CGFloat = 1
-        let posColor = UIColor.orange.withAlphaComponent(alpha)
-        let negColor = UIColor.green.withAlphaComponent(alpha)
-        let zero = ChartAxisValueDouble(30)
+        let posColor = UIColor(displayP3Red: 241/255, green: 156/255, blue: 96/255, alpha: 1)
+        let negColor = UIColor(displayP3Red: 248/255, green: 212/255, blue: 156/255, alpha: 1)
+        let zero = ChartAxisValueDouble(0)
         let bars: [ChartBarModel] = barsData.enumerated().flatMap {index, tuple in
             [
                 ChartBarModel(constant: ChartAxisValueDouble(index), axisValue1: zero, axisValue2: ChartAxisValueDouble(tuple.max), bgColor: posColor),
@@ -117,7 +106,7 @@ class HealthKitGraphVC: UIViewController {
             ]
         }
         
-        let yValues = stride(from: 30, through: 160, by: 10).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
+        let yValues = stride(from: 0, through: 200, by: 20).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
         let xValues =
             [ChartAxisValueString(order: -1)] +
                 barsData.enumerated().map {index, tuple in ChartAxisValueString(tuple.0, order: index, labelSettings: labelSettings)} +
@@ -134,7 +123,7 @@ class HealthKitGraphVC: UIViewController {
         
         let barsLayer = ChartBarsLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, bars: bars, horizontal: false, barWidth: 20, animDuration: 0.5)
         
-        print("chartFrame: \(chartFrame) \nchartView.frame: \(chartView.frame)")
+//        print("chartFrame: \(chartFrame) \nchartView.frame: \(chartView.frame)")
         
         // labels layer
         // create chartpoints for the top and bottom of the bars, where we will show the labels
@@ -149,7 +138,7 @@ class HealthKitGraphVC: UIViewController {
             
             let pos = chartPointModel.chartPoint.y.scalar > 0
             
-            let yOffset = pos ? -posOffset : posOffset
+            let yOffset = pos ? posOffset : -posOffset
             label.text = "\(formatter.string(from: NSNumber(value: chartPointModel.chartPoint.y.scalar))!)"
             label.font = ChartsDefaultSetting.labelFont
             label.sizeToFit()
@@ -184,109 +173,70 @@ class HealthKitGraphVC: UIViewController {
                 barsLayer,
                 labelsLayer,
                 yZeroGapLayer,
-                //                lineLayer,
-                //                lineCirclesLayer
+//                lineLayer,
+//                lineCirclesLayer
             ]
         )
         
         return chart
     }
-    
+
     func setDataArea() {
-        var cnt = 0
-        var beforeDate: String? = nil
-        var minHeartRate: Int? = nil
-        var maxHeartRate: Int? = nil
-        self.heartRateKey.removeAll()
+        self.heartRateDicKey.removeAll()
+
+        let calcDate = Calendar.current.date(byAdding: Calendar.Component.day, value: -6, to: Date())!
+        for i in 0...6 {
+            let date = Calendar.current.date(byAdding: Calendar.Component.day, value: -i, to:Date())!
+            let stringDate = self.dateFormatter.string(from: date)
+            self.heartRateDicKey.append(stringDate)
+            self.heartRateDic[stringDate] = [Int]()
+        }
+        
         for heartRate in heartRates {
-            //print("\(cnt) : \(heartRates.count)")
-            if cnt > 6 || cnt > heartRates.count {
+            guard calcDate < heartRate.startDate else {
                 break
             }
-            else {
-                let lastHeartRate = Int(heartRate.quantity.doubleValue(for: bpmUnit))
-                let lastDate: String? = self.dateFormatter.string(from: heartRate.startDate)
-                
-                if beforeDate == nil { // 처음일 경우
-                    
-                    //print("\n\(cnt) : \(heartRate.quantity.doubleValue(for: bpmUnit)), \(self.dateFormatter.string(from: heartRate.startDate))")
-                    beforeDate = lastDate
-                    minHeartRate = lastHeartRate
-                    maxHeartRate = lastHeartRate
-                    
-                    if lastHeartRate != nil {
-                        self.lastHeartRate?.text = "\(lastHeartRate)bpm"
-                    } else {
-                        self.lastHeartRate?.text = "-bpm"
-                    }
-                    
-                    let lastDateFormat: DateFormatter = {
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "YY.MM.dd"
-                        return formatter
-                    }()
-                    
-                    let lastTimeFormat: DateFormatter = {
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "a hh:mm"
-                        return formatter
-                    }()
-                    
-                    self.lastDate?.text = "\(lastDateFormat.string(from: heartRate.startDate))"
-                    self.lastTime?.text = "\(lastTimeFormat.string(from: heartRate.startDate))"
-                    
-                } else { // 처음이 아닐 경우
-                    if beforeDate != lastDate { // 측정 날짜가 변경될 경우
-                        self.heartRateKey.append(beforeDate!)
-                        self.heartRatesDic[beforeDate!] = ["min" : minHeartRate!, "max" : maxHeartRate!]
-                        
-                        //print("\(cnt) \(beforeDate) \(lastDate) ")
-                        
-                        beforeDate = lastDate
-                        minHeartRate = lastHeartRate
-                        maxHeartRate = minHeartRate
-                        cnt = cnt + 1
-                    }
-                    
-                    //print("\(cnt) : \(heartRate.quantity.doubleValue(for: bpmUnit)), \(self.dateFormatter.string(from: heartRate.startDate))")
-                    minHeartRate = (minHeartRate! > lastHeartRate) ? lastHeartRate : minHeartRate
-                    maxHeartRate = (maxHeartRate! < lastHeartRate) ? lastHeartRate : maxHeartRate
-                    
-                    if heartRate.startDate == heartRates.last?.startDate { // 마지막 측정일 경우
-                        
-                        self.heartRateKey.append(lastDate!)
-                        self.heartRatesDic[lastDate!] = ["min" : minHeartRate!, "max" : maxHeartRate!]
-                        
-                        //print("\(cnt) \(beforeDate) \(lastDate) ")
-                        
-                        beforeDate = lastDate
-                        minHeartRate = lastHeartRate
-                        maxHeartRate = minHeartRate
-                    }
-                }
-            }
+            let dateString = self.dateFormatter.string(from: heartRate.startDate)
+
+            self.heartRateDic[dateString]?.append(Int(heartRate.quantity.doubleValue(for: bpmUnit)))
         }
-        
-        //print("\(self.heartRatesDic[heartRateKey[0]])")
-        //print("\(self.heartRatesDic[heartRateKey[1]])")
-        
-        //print("keyCount \(self.heartRateKey.count)")
-        //print("dicCount \(self.heartRatesDic.count)")
-        if !self.heartRatesDic.isEmpty {
-            self.minHeartRate?.text = "\(self.heartRatesDic[self.heartRateKey[0]]!["min"]!)"
-            self.maxHeartRate?.text = "\(self.heartRatesDic[self.heartRateKey[0]]!["max"]!)"
-            
-        } else {
+        self.heartRateDicKey = self.heartRateDicKey.sorted().reversed()
+//        dump(self.heartRateDicKey)
+    }
+    
+    func setLastHeartRateData() {
+        guard let lastHeartrate = heartRates.first else {
             self.lastHeartRate?.text = "-bpm"
-            self.minHeartRate?.text = "-"
-            self.maxHeartRate?.text = "-"
             self.lastDate?.text = "-"
             self.lastTime?.text = "-"
+            return
+        }
+        let dateString = dateFormatter.string(from: lastHeartrate.startDate)
+        guard let minValue = self.heartRateDic[dateString]?.min(), let maxValue = self.heartRateDic[dateString]?.max() else {
+            self.minHeartRate?.text = "-"
+            self.maxHeartRate?.text = "-"
+            return
         }
         
         
-        //self.heartRateKey = self.heartRateKey.reverse()
+        self.lastHeartRate?.text = "\(Int(lastHeartrate.quantity.doubleValue(for: bpmUnit)))bpm"
+        
+        self.minHeartRate?.text = "\(minValue)"
+        self.maxHeartRate?.text = "\(maxValue)"
+        
+        self.lastDate?.text = {
+            let lastDateFormatter = DateFormatter()
+            lastDateFormatter.dateFormat = "YY.MM.dd"
+            return lastDateFormatter.string(from: lastHeartrate.startDate)
+        }()
+        
+        self.lastTime?.text = {
+            let lastTimeFormatter = DateFormatter()
+            lastTimeFormatter.dateFormat = "a hh:mm"
+             return lastTimeFormatter.string(from: lastHeartrate.startDate)
+        }()
     }
+    
     
     @IBAction func showAllHeartRates(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "chartToAllHealthKitData", sender: self)

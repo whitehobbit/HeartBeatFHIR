@@ -45,6 +45,8 @@ class MyInfoVC: UIViewController {
         self.birthdateLabel?.text = userInfo?.birthDate
         self.phoneNumberLabel?.text = userInfo?.phone
     }
+    
+
     /*
     // MARK: - Navigation
 

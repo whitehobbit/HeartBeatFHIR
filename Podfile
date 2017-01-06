@@ -5,6 +5,8 @@ use_frameworks!
 target 'HeartBeatFHIR' do
   pod 'SwiftCharts', :git => 'https://github.com/i-schuetz/SwiftCharts.git'
   pod 'FHIR', :git => 'https://github.com/smart-on-fhir/Swift-FHIR.git'
+  pod 'Alamofire', '~> 4.0'
+  pod 'SwiftyJSON', '~> 3.1'
 
 end
 

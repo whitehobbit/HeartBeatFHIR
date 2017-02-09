@@ -115,13 +115,13 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "allHealthKitToSelectDate" {
-            let destinatinonVC = segue.destination as! SelectDateVC
+            let destinationVC = segue.destination as! SelectDateVC
             let myIndexPath = self.tableView.indexPathForSelectedRow
             let row = (myIndexPath as NSIndexPath?)?.row
             print ("\(heartRateDic[heartRateDateKeys[row!]]!.count)")
             
             for heartRate in self.heartRateDic[self.heartRateDateKeys[row!]]! {
-                destinatinonVC.heartRates.append(heartRate)
+                destinationVC.heartRates.append(heartRate)
             }
         }
         // Get the new view controller using segue.destinationViewController.

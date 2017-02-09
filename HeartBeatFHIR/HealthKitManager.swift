@@ -7,6 +7,7 @@
 //
 
 import HealthKit
+import FHIR
 
 class HealthKitManager {
     let store = HKHealthStore()
@@ -85,5 +86,21 @@ class HealthKitManager {
         }
         // 4. Excute the query
         store.execute(query)
+    }
+    
+    func saveHeartRates(_ heartRate: Observation) -> Bool {
+//        let flag = false
+//        let value = Double((heartRate.valueQuantity?.value)!)
+//        let date = (heartRate.effectiveDateTime?.nsDate)!
+//        let device: Device? = heartRate.device? as? Device
+//        
+//        let heartRateType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
+//        let heartRateQuantity = HKQuantity(unit: bpmUnit, doubleValue: value)
+//        let heartRateDevice = HKDevice(name: , manufacturer: <#T##String?#>, model: <#T##String?#>, hardwareVersion: <#T##String?#>, firmwareVersion: <#T##String?#>, softwareVersion: <#T##String?#>, localIdentifier: <#T##String?#>, udiDeviceIdentifier: <#T##String?#>)
+//        let heartRateSample = HKQuantitySample(type: heartRateType!, quantity: heartRateQuantity, start: date, end: date, device: device, metadata: heartRate.asJSON())
+        
+        
+        
+        return flag
     }
 }

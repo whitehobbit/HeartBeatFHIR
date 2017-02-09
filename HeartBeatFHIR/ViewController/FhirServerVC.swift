@@ -63,7 +63,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "fhirCell", for: indexPath)
         
         let key = self.heartRateDicKey[indexPath.row]
-        print("\n\n\(key)")
+//        print("\n\n\(key)")
         cell.textLabel?.text = "\((self.heartRateDic[key]?.min())!) -  \((self.heartRateDic[key]?.max())!) (\((self.heartRateDic[key]?.count)!))"
         cell.detailTextLabel?.text = key
 
@@ -87,43 +87,81 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "fhirServerToFhirDate" {
+            let destinationVC = segue.destination as! FhirDateVC
+            let myIndexPath = self.tableView.indexPathForSelectedRow
+            let low = (myIndexPath as NSIndexPath?)?.row
+            
+            for obs in self.obsDic[heartRateDicKey[low!]]! {
+                destinationVC.obss.append(obs)
+                destinationVC.title = heartRateDicKey[low!]
+            }
+        }
     }
-    */
+
     
     func getFHIR() {
         let user = prefs.dictionary(forKey: "userLoginInfo")!
         let (code, pId) = ("8867-4", user["patientId"] as! String)
-        
+        heartRateDic.removeAll()
+        heartRateDicKey.removeAll()
+        obsDic.removeAll()
         var heartRateDicTemp = [String: [Int]]()
         var heartRateKeyTemp = [String]()
         
-        var searchUrl = fhirServer.baseURL.absoluteString + Observation.resourceType + "?patient=" + pId + "&code=" + code
+        var searchUrl = fhirServer.baseURL.absoluteString + Observation.resourceType + "?patient=" + pId + "&code=" + code + "&_count=50"
  
         Alamofire.request(searchUrl).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let total = JSON(value)["total"].stringValue
-                searchUrl = searchUrl + "&_count=" + total
-                print("in: \(searchUrl)")
+                let entrys = JSON(value)["entry"].array
+                let bundle = Bundle(json: JSON(value).dictionaryObject)
                 
-                Alamofire.request(searchUrl).validate().responseJSON { res in
-                    
-                    switch res.result {
-                    case .success(let value):
-                        let bundleJson = JSON(value)
-                        print(bundleJson["entry"].count)
-                    case .failure(let error):
-                        print(error)
+                for entry in bundle.entry! {
+                    let obs: Observation = entry.resource as! Observation
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YY. MM. dd"
+                    let date = dateFormatter.string(from: (obs.effectiveDateTime?.nsDate)!)
+                    if !(self.heartRateDicKey.contains(date)) {
+                        self.heartRateDicKey.append(date)
                     }
-                    
+                    if self.heartRateDic[date] == nil {
+                        self.heartRateDic[date] = [Int]()
+                        self.obsDic[date] = [Observation]()
+                    }
+                    self.heartRateDic[date]?.append(Int((obs.valueQuantity?.value)!))
+                    self.obsDic[date]?.append(obs)
+//                    print(obs.id)
                 }
+                self.heartRateDicKey.sort()
+                self.heartRateDicKey.reverse()
+                self.reloadTable()
+//                searchUrl = searchUrl + "&_count=" + total
+//                print("in: \(searchUrl)")
+//
+//                Alamofire.request(searchUrl).validate().responseJSON { res in
+//                    
+//                    switch res.result {
+//                    case .success(let value):
+//                        let bundleJson = JSON(value)
+////                        print(bundleJson["entry"].count)
+//                        let obsEntrys = bundleJson["entry"].array!
+//                        for obsEntry in obsEntrys {
+//                            let obsResource = obsEntry["resource"]
+//                            let obs = Observation(json: obsResource.dictionaryObject)
+//                            print(obs.id)
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                    
+//                }
             case .failure(let error):
                 print(error)
             }

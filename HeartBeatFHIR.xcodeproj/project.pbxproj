@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D60193911DC9CC9B006312FC /* MyInfo.storyboard */; };
 		D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D601939D1DCAB530006312FC /* InfoPlist.strings */; };
-		D60193A01DCAB733006312FC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D601939F1DCAB733006312FC /* Info.plist */; };
 		D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454B71DC7520D00D61917 /* AppDelegate.swift */; };
 		D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454BB1DC7520D00D61917 /* Main.storyboard */; };
 		D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62454BE1DC7520D00D61917 /* Assets.xcassets */; };
 		D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */; };
 		D62454CD1DC7520D00D61917 /* HeartBeatFHIRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */; };
 		D62454D81DC7520D00D61917 /* HeartBeatFHIRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */; };
+		D6674CAB1DD2E22400CDA524 /* MyInfoTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */; };
 		D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */; };
 		D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */; };
 		D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */; };
@@ -32,6 +32,8 @@
 		D6A72AD71DC753AA00DD2C66 /* FhirJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */; };
 		D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */; };
 		D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A72AD91DC7545500DD2C66 /* HealthKit.framework */; };
+		D6F534D61E4054EB002180C6 /* FhirDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D51E4054EB002180C6 /* FhirDateVC.swift */; };
+		D6F534DA1E416C36002180C6 /* FHIRDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */; };
 		FCE627FFA93E6E95F0346A7C /* Pods_HeartBeatFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,7 @@
 		D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatFHIRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatFHIRUITests.swift; sourceTree = "<group>"; };
 		D62454D91DC7520D00D61917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoTableVC.swift; path = ViewController/MyInfoTableVC.swift; sourceTree = "<group>"; };
 		D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoVC.swift; path = ViewController/MyInfoVC.swift; sourceTree = "<group>"; };
 		D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FhirServer.storyboard; sourceTree = "<group>"; };
 		D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HealthKit.storyboard; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 		D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		D6A72AD91DC7545500DD2C66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeartBeatFHIR.entitlements; sourceTree = "<group>"; };
+		D6F534D51E4054EB002180C6 /* FhirDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FhirDateVC.swift; path = ViewController/FhirDateVC.swift; sourceTree = "<group>"; };
+		D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRDetailVC.swift; sourceTree = "<group>"; };
 		E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeartBeatFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */,
+				D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */,
 			);
 			name = "1st Tab MyInfo";
 			sourceTree = "<group>";
@@ -243,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				D6A72AC21DC7532A00DD2C66 /* FhirServerVC.swift */,
+				D6F534D51E4054EB002180C6 /* FhirDateVC.swift */,
+				D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */,
 			);
 			name = "3rd Tab FHIRServer";
 			sourceTree = "<group>";
@@ -375,7 +383,6 @@
 			files = (
 				D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */,
 				D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */,
-				D60193A01DCAB733006312FC /* Info.plist in Resources */,
 				D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */,
 				D6A72ABE1DC752C600DD2C66 /* Setting.storyboard in Resources */,
 				D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */,
@@ -456,6 +463,7 @@
 			files = (
 				D6A72AD61DC753AA00DD2C66 /* ChartsDefaultSetting.swift in Sources */,
 				D6A72ACB1DC7532A00DD2C66 /* HealthKitGraphVC.swift in Sources */,
+				D6F534DA1E416C36002180C6 /* FHIRDetailVC.swift in Sources */,
 				D6A72AD71DC753AA00DD2C66 /* FhirJsonManager.swift in Sources */,
 				D6A72ACC1DC7532A00DD2C66 /* JoinVC.swift in Sources */,
 				D6A72ACD1DC7532A00DD2C66 /* LoginVC.swift in Sources */,
@@ -463,7 +471,9 @@
 				D6A72ACA1DC7532A00DD2C66 /* FhirServerVC.swift in Sources */,
 				D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */,
 				D6A72AC81DC7532A00DD2C66 /* AllHealthKitDataVC.swift in Sources */,
+				D6674CAB1DD2E22400CDA524 /* MyInfoTableVC.swift in Sources */,
 				D6A72ACF1DC7532A00DD2C66 /* SettingVC.swift in Sources */,
+				D6F534D61E4054EB002180C6 /* FhirDateVC.swift in Sources */,
 				D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */,
 				D6A72ACE1DC7532A00DD2C66 /* SelectDateVC.swift in Sources */,
 				D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */,
@@ -559,6 +569,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -609,6 +620,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -637,6 +649,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
 				DEVELOPMENT_TEAM = E3K4HTC5RG;
@@ -652,6 +665,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
 				DEVELOPMENT_TEAM = E3K4HTC5RG;

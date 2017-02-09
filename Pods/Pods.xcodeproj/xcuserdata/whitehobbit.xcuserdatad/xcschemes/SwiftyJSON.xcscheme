@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C357AF1F095D101631D0AB6B8976F2F8"
-               BuildableName = "Pods_HeartBeatFHIR.framework"
-               BlueprintName = "Pods-HeartBeatFHIR"
+               BlueprintIdentifier = "E6038A8DE10FC1B4E310DC39C98A7392"
+               BuildableName = "SwiftyJSON.framework"
+               BlueprintName = "SwiftyJSON"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C357AF1F095D101631D0AB6B8976F2F8"
-            BuildableName = "Pods_HeartBeatFHIR.framework"
-            BlueprintName = "Pods-HeartBeatFHIR"
+            BlueprintIdentifier = "E6038A8DE10FC1B4E310DC39C98A7392"
+            BuildableName = "SwiftyJSON.framework"
+            BlueprintName = "SwiftyJSON"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

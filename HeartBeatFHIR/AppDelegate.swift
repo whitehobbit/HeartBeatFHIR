@@ -9,9 +9,10 @@
 import UIKit
 import HealthKit
 import FHIR
+import SwiftyDropbox
 
 // uesrInfo
-let user = [ "id" : "test", "password" : "test", "patientId" : "7", "familyName": "이", "givenName" : "진기", "telecom" : "82+ 10-7769-1093", "gender" : "남", "birthDate" : "1990-01-14" ]
+let user = [ "id" : "test@test.com", "password" : "test", "patientId" : "7", "familyName": "이", "givenName" : "진기", "telecom" : "82+ 10-7769-1093", "gender" : "남", "birthDate" : "1990-01-14" ]
 
 var prefs = UserDefaults.standard
 
@@ -28,6 +29,11 @@ let baseUrl = "http://hitlab.gachon.ac.kr:8888/gachon-fhir-server/baseDstu2"
 let fhirServer = FHIROpenServer(baseURL: URL(string: baseUrl)!)
 //let fhirServer: Server = Server(baseURL: URL(string: baseUrl)!)
 
+// HPA
+var connectHPA: Bool = false
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -35,10 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         UITabBar.appearance().tintColor = UIColor(red: 241/255, green: 128/255, blue: 90/255, alpha: 1.0)
-        
         getHeartRates()
+        
+        prefs.set(nil, forKey: "patientId")
+        prefs.set(nil, forKey: "name")
+        prefs.set(false, forKey: "autoLogin")
+        prefs.set(nil, forKey: "id")
+        prefs.set(nil, forKey: "password")
+        prefs.set(false, forKey: "connectHpa")
+        prefs.set("ict.demo.hongil4@gmail.com", forKey: "dropboxId")
         
         if isLogined {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -87,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
 }
 
 extension UIView {

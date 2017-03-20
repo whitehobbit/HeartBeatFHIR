@@ -89,7 +89,7 @@ class HealthKitManager {
     }
     
     func saveHeartRates(_ heartRate: Observation) -> Bool {
-//        let flag = false
+        let flag = false
 //        let value = Double((heartRate.valueQuantity?.value)!)
 //        let date = (heartRate.effectiveDateTime?.nsDate)!
 //        let device: Device? = heartRate.device? as? Device

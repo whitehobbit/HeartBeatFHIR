@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import SwiftyJSON
 
 class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var heartRates = [HKQuantitySample?]()
@@ -61,6 +62,63 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         cell.textLabel?.text = "\(heartRate!.quantity.doubleValue(for: bpmUnit))"
         cell.detailTextLabel?.text = "\(self.dateFormatter.string(from: (heartRates[indexPath.row]?.startDate)!))"
         return cell
+    }
+    
+    @IBAction func clickHillingUpload(_ sender: UIButton) {
+        
+        func errorAlert(_ msg: String = "Create Failed") {
+            let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        connectHPA = prefs.bool(forKey: "connectHpa")
+        
+        guard connectHPA else {
+            errorAlert("HPA not connected")
+            return
+        }
+        
+        guard !heartRates.isEmpty else {
+            
+            errorAlert("heartRates is empty")
+            return
+        }
+        
+        guard let name = prefs.string(forKey: "name") else {
+            errorAlert("name is nil")
+            return
+        }
+        print(name)
+        
+        let ccrM = CCRManager()
+        var hkd = [HKQuantitySample]()
+        for heartRate in heartRates {
+            hkd.append(heartRate!)
+        }
+        let ccr = ccrM.convertCCR(hkDatas: hkd)
+        
+        
+        
+        HTOS_API.uploadHPA(name: name, user: "ict.demo.hongil4@gmail.com", ccr: ccr) { data in
+            guard let data = data else {
+                errorAlert("response nil")
+                return
+            }
+            
+            guard data["handle"] != nil else {
+                errorAlert()
+                return
+            }
+            debugPrint(data)
+            let alert = UIAlertController(title: "Success", message: "Create Succeed", preferredStyle: UIAlertControllerStyle.alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+//                print(ccr.asString())
     }
     
     // MARK: - Navigation

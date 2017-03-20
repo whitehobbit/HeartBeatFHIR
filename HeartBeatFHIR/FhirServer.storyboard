@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="top" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SIa-8M-Zsw">
-                                <rect key="frame" x="10" y="84" width="356" height="514"/>
+                                <rect key="frame" x="9.5" y="84" width="356" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fhirCell" textLabel="gTJ-gk-1qu" detailTextLabel="6Py-RG-k70" style="IBUITableViewCellStyleValue1" id="1XX-eu-SJg">
@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IgG-V2-ZgX">
-                                <rect key="frame" x="10" y="84" width="356" height="514"/>
+                                <rect key="frame" x="9.5" y="84" width="356" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="fhirDateCell" textLabel="H9D-S9-mOf" detailTextLabel="ybe-5R-rmM" style="IBUITableViewCellStyleValue1" id="vYH-C4-ZJl">
@@ -184,13 +184,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5G-Gj-V1R" userLabel="콘텐츠 View">
-                                <rect key="frame" x="10" y="84" width="356" height="367"/>
+                                <rect key="frame" x="9.5" y="84" width="356" height="367"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02w-cI-aQH" userLabel="심박수 세부사항 View">
                                         <rect key="frame" x="0.0" y="0.0" width="356" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heart Rate Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVA-NE-vhv">
-                                                <rect key="frame" x="20" y="24" width="137" height="23"/>
+                                                <rect key="frame" x="20" y="23.5" width="137" height="23"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -211,7 +211,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrC-05-AKe" userLabel="심박수 View">
-                                        <rect key="frame" x="0.0" y="71" width="356" height="99"/>
+                                        <rect key="frame" x="0.0" y="71" width="356" height="99.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="57bpm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-Mk-MsV">
                                                 <rect key="frame" x="20" y="23" width="60" height="23"/>
@@ -225,7 +225,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heart Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr9-fY-9cz">
-                                                <rect key="frame" x="20" y="55" width="77" height="18"/>
+                                                <rect key="frame" x="20" y="56" width="77" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -253,10 +253,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaN-13-gwC" userLabel="날짜 View">
-                                        <rect key="frame" x="0.0" y="170" width="356" height="98"/>
+                                        <rect key="frame" x="0.0" y="170.5" width="356" height="98.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Nov, 6:22 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dK-Ue-kz1">
-                                                <rect key="frame" x="20" y="23" width="129" height="23"/>
+                                                <rect key="frame" x="20" y="23.5" width="129" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -267,7 +267,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lte-IV-cgQ">
-                                                <rect key="frame" x="20" y="55" width="34" height="18"/>
+                                                <rect key="frame" x="20" y="55.5" width="34" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -295,16 +295,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t55-P8-Nwg" userLabel="출처 View">
-                                        <rect key="frame" x="0.0" y="268" width="356" height="99"/>
+                                        <rect key="frame" x="0.0" y="269" width="356" height="99.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habin's Apple Watch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5T-6K-gGn">
-                                                <rect key="frame" x="20" y="23" width="174" height="23"/>
+                                                <rect key="frame" x="20" y="23.5" width="174" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-HP-HU7">
-                                                <rect key="frame" x="20" y="56" width="51" height="18"/>
+                                                <rect key="frame" x="20" y="55.5" width="51" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -409,4 +409,5 @@
     <resources>
         <image name="tab3" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.98039215690000003" green="0.40000000000000002" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
 </document>

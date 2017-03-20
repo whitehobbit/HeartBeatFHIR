@@ -8,6 +8,8 @@
 
 import UIKit
 import HealthKit
+import Alamofire
+import SwiftyJSON
 
 class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -22,6 +24,7 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
         formatter.dateFormat = "YY. MM. dd."
         return formatter
     }()
+    var sectionSize = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         automaticallyAdjustsScrollViewInsets = false
         super.viewWillAppear(animated)
+        
+//        heartRates.map { }
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.setTableData()
@@ -49,7 +55,7 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sectionSize
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

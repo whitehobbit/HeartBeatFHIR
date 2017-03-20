@@ -12,7 +12,8 @@ import Alamofire
 import SwiftyJSON
 
 class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    @IBOutlet weak var hpaButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var heartRateDic = [String: [Int]]()
@@ -78,6 +79,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    
     // MARK: - 테이블셀 사이즈에 맞춰 테이블뷰 조절
     func tableViewAutoHeight() {
         if self.tableView.contentSize.height < self.tableView.frame.height {
@@ -106,8 +108,10 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     
     func getFHIR() {
-        let user = prefs.dictionary(forKey: "userLoginInfo")!
-        let (code, pId) = ("8867-4", user["patientId"] as! String)
+        guard let pId = prefs.string(forKey: "patientId") else {
+            return
+        }
+        let code = "8867-4"
         heartRateDic.removeAll()
         heartRateDicKey.removeAll()
         obsDic.removeAll()

@@ -10,6 +10,7 @@ import UIKit
 import FHIR
 import Alamofire
 import SwiftyJSON
+import SwiftyDropbox
 
 class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,7 +22,7 @@ class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("myInfoTableVC")
         // Do any additional setup after loading the view.
     }
 
@@ -37,6 +38,7 @@ class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         tableViewAutoHeight()
     }
     
@@ -69,6 +71,7 @@ class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func setData() {
+        print("setData()")
         for key in dataKey {
             dataDic[key] = ""
         }
@@ -116,6 +119,8 @@ class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             return
         }
     }
+    
+
     
     // MARK: - 테이블셀 사이즈에 맞춰 테이블뷰 조절
     func tableViewAutoHeight() {

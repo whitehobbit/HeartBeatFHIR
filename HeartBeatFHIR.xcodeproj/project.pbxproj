@@ -13,9 +13,10 @@
 		D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454BB1DC7520D00D61917 /* Main.storyboard */; };
 		D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62454BE1DC7520D00D61917 /* Assets.xcassets */; };
 		D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */; };
-		D62454CD1DC7520D00D61917 /* HeartBeatFHIRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */; };
-		D62454D81DC7520D00D61917 /* HeartBeatFHIRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */; };
+		D661153D1E650498006BB14C /* HillingPlatformVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661153C1E650498006BB14C /* HillingPlatformVC.swift */; };
 		D6674CAB1DD2E22400CDA524 /* MyInfoTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */; };
+		D69560FF1E5569A800A230BC /* HillingServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69560FE1E5569A800A230BC /* HillingServer.storyboard */; };
+		D69561011E63F02700A230BC /* CCRTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69561001E63F02700A230BC /* CCRTags.swift */; };
 		D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */; };
 		D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */; };
 		D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */; };
@@ -32,27 +33,12 @@
 		D6A72AD71DC753AA00DD2C66 /* FhirJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */; };
 		D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */; };
 		D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A72AD91DC7545500DD2C66 /* HealthKit.framework */; };
+		D6BF65831E5538ED0001A7AA /* CCRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BF65821E5538ED0001A7AA /* CCRManager.swift */; };
 		D6F534D61E4054EB002180C6 /* FhirDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D51E4054EB002180C6 /* FhirDateVC.swift */; };
 		D6F534DA1E416C36002180C6 /* FHIRDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */; };
+		D6F534DC1E4C52E4002180C6 /* HTOS_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534DB1E4C52E3002180C6 /* HTOS_API.swift */; };
 		FCE627FFA93E6E95F0346A7C /* Pods_HeartBeatFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D62454C91DC7520D00D61917 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D62454AC1DC7520C00D61917 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D62454B31DC7520C00D61917;
-			remoteInfo = HeartBeatFHIR;
-		};
-		D62454D41DC7520D00D61917 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D62454AC1DC7520C00D61917 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D62454B31DC7520C00D61917;
-			remoteInfo = HeartBeatFHIR;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -67,13 +53,10 @@
 		D62454BC1DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D62454BE1DC7520D00D61917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D62454C11DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatFHIRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatFHIRTests.swift; sourceTree = "<group>"; };
-		D62454CE1DC7520D00D61917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatFHIRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatFHIRUITests.swift; sourceTree = "<group>"; };
-		D62454D91DC7520D00D61917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D661153C1E650498006BB14C /* HillingPlatformVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HillingPlatformVC.swift; sourceTree = "<group>"; };
 		D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoTableVC.swift; path = ViewController/MyInfoTableVC.swift; sourceTree = "<group>"; };
+		D69560FE1E5569A800A230BC /* HillingServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HillingServer.storyboard; sourceTree = "<group>"; };
+		D69561001E63F02700A230BC /* CCRTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCRTags.swift; sourceTree = "<group>"; };
 		D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoVC.swift; path = ViewController/MyInfoVC.swift; sourceTree = "<group>"; };
 		D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FhirServer.storyboard; sourceTree = "<group>"; };
 		D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HealthKit.storyboard; sourceTree = "<group>"; };
@@ -91,8 +74,11 @@
 		D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		D6A72AD91DC7545500DD2C66 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeartBeatFHIR.entitlements; sourceTree = "<group>"; };
+		D6BF65801E52E8870001A7AA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D6BF65821E5538ED0001A7AA /* CCRManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCRManager.swift; sourceTree = "<group>"; };
 		D6F534D51E4054EB002180C6 /* FhirDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FhirDateVC.swift; path = ViewController/FhirDateVC.swift; sourceTree = "<group>"; };
 		D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRDetailVC.swift; sourceTree = "<group>"; };
+		D6F534DB1E4C52E3002180C6 /* HTOS_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTOS_API.swift; sourceTree = "<group>"; };
 		E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeartBeatFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,20 +90,6 @@
 			files = (
 				FCE627FFA93E6E95F0346A7C /* Pods_HeartBeatFHIR.framework in Frameworks */,
 				D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454C51DC7520D00D61917 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454D01DC7520D00D61917 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +108,7 @@
 		B084568A6AD5AA03F146937C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6BF65801E52E8870001A7AA /* WebKit.framework */,
 				D6A72AD91DC7545500DD2C66 /* HealthKit.framework */,
 				E621AED42399A221B68617B3 /* Pods_HeartBeatFHIR.framework */,
 			);
@@ -146,8 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				D62454B61DC7520D00D61917 /* HeartBeatFHIR */,
-				D62454CB1DC7520D00D61917 /* HeartBeatFHIRTests */,
-				D62454D61DC7520D00D61917 /* HeartBeatFHIRUITests */,
 				D62454B51DC7520D00D61917 /* Products */,
 				8320AEF7712651CE9AF0D988 /* Pods */,
 				B084568A6AD5AA03F146937C /* Frameworks */,
@@ -158,8 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */,
-				D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */,
-				D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,36 +137,29 @@
 			isa = PBXGroup;
 			children = (
 				D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */,
-				D6A72AB61DC752B500DD2C66 /* storyboard */,
-				D6A72AD01DC7533200DD2C66 /* VC */,
 				D62454B71DC7520D00D61917 /* AppDelegate.swift */,
 				D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */,
 				D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */,
 				D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */,
+				D6A72AB61DC752B500DD2C66 /* storyboard */,
+				D6A72AD01DC7533200DD2C66 /* VC */,
 				D62454BE1DC7520D00D61917 /* Assets.xcassets */,
 				D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */,
 				D601939F1DCAB733006312FC /* Info.plist */,
 				D601939D1DCAB530006312FC /* InfoPlist.strings */,
+				D6F534DB1E4C52E3002180C6 /* HTOS_API.swift */,
+				D6BF65821E5538ED0001A7AA /* CCRManager.swift */,
+				D69561001E63F02700A230BC /* CCRTags.swift */,
 			);
 			path = HeartBeatFHIR;
 			sourceTree = "<group>";
 		};
-		D62454CB1DC7520D00D61917 /* HeartBeatFHIRTests */ = {
+		D661153B1E650467006BB14C /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				D62454CC1DC7520D00D61917 /* HeartBeatFHIRTests.swift */,
-				D62454CE1DC7520D00D61917 /* Info.plist */,
+				D661153C1E650498006BB14C /* HillingPlatformVC.swift */,
 			);
-			path = HeartBeatFHIRTests;
-			sourceTree = "<group>";
-		};
-		D62454D61DC7520D00D61917 /* HeartBeatFHIRUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D62454D71DC7520D00D61917 /* HeartBeatFHIRUITests.swift */,
-				D62454D91DC7520D00D61917 /* Info.plist */,
-			);
-			path = HeartBeatFHIRUITests;
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		D6A72AB31DC7527B00DD2C66 /* 1st Tab MyInfo */ = {
@@ -216,6 +178,7 @@
 				D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */,
 				D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */,
 				D60193911DC9CC9B006312FC /* MyInfo.storyboard */,
+				D69560FE1E5569A800A230BC /* HillingServer.storyboard */,
 				D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */,
 			);
 			name = storyboard;
@@ -241,6 +204,7 @@
 				D6A72ABF1DC7530E00DD2C66 /* 2nd Tab HealthKit */,
 				D6A72AD11DC7534D00DD2C66 /* 3rd Tab FHIRServer */,
 				D6A72AD21DC7536700DD2C66 /* 4th Tab Setting */,
+				D661153B1E650467006BB14C /* New Group */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -286,49 +250,13 @@
 			productReference = D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D62454C71DC7520D00D61917 /* HeartBeatFHIRTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D62454DF1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRTests" */;
-			buildPhases = (
-				D62454C41DC7520D00D61917 /* Sources */,
-				D62454C51DC7520D00D61917 /* Frameworks */,
-				D62454C61DC7520D00D61917 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D62454CA1DC7520D00D61917 /* PBXTargetDependency */,
-			);
-			name = HeartBeatFHIRTests;
-			productName = HeartBeatFHIRTests;
-			productReference = D62454C81DC7520D00D61917 /* HeartBeatFHIRTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D62454D21DC7520D00D61917 /* HeartBeatFHIRUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D62454E21DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRUITests" */;
-			buildPhases = (
-				D62454CF1DC7520D00D61917 /* Sources */,
-				D62454D01DC7520D00D61917 /* Frameworks */,
-				D62454D11DC7520D00D61917 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D62454D51DC7520D00D61917 /* PBXTargetDependency */,
-			);
-			name = HeartBeatFHIRUITests;
-			productName = HeartBeatFHIRUITests;
-			productReference = D62454D31DC7520D00D61917 /* HeartBeatFHIRUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D62454AC1DC7520C00D61917 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = WhiteHobbit;
 				TargetAttributes = {
@@ -341,18 +269,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					D62454C71DC7520D00D61917 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = E3K4HTC5RG;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D62454B31DC7520C00D61917;
-					};
-					D62454D21DC7520D00D61917 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = E3K4HTC5RG;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D62454B31DC7520C00D61917;
 					};
 				};
 			};
@@ -370,8 +286,6 @@
 			projectRoot = "";
 			targets = (
 				D62454B31DC7520C00D61917 /* HeartBeatFHIR */,
-				D62454C71DC7520D00D61917 /* HeartBeatFHIRTests */,
-				D62454D21DC7520D00D61917 /* HeartBeatFHIRUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -389,20 +303,7 @@
 				D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */,
 				D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */,
 				D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454C61DC7520D00D61917 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454D11DC7520D00D61917 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D69560FF1E5569A800A230BC /* HillingServer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E2F45FE33301EEC81A2C3B7D /* [CP] Copy Pods Resources */ = {
@@ -468,48 +369,23 @@
 				D6A72ACC1DC7532A00DD2C66 /* JoinVC.swift in Sources */,
 				D6A72ACD1DC7532A00DD2C66 /* LoginVC.swift in Sources */,
 				D6A72AC91DC7532A00DD2C66 /* DetailHealthKitVC.swift in Sources */,
+				D6F534DC1E4C52E4002180C6 /* HTOS_API.swift in Sources */,
 				D6A72ACA1DC7532A00DD2C66 /* FhirServerVC.swift in Sources */,
 				D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */,
 				D6A72AC81DC7532A00DD2C66 /* AllHealthKitDataVC.swift in Sources */,
 				D6674CAB1DD2E22400CDA524 /* MyInfoTableVC.swift in Sources */,
 				D6A72ACF1DC7532A00DD2C66 /* SettingVC.swift in Sources */,
 				D6F534D61E4054EB002180C6 /* FhirDateVC.swift in Sources */,
+				D6BF65831E5538ED0001A7AA /* CCRManager.swift in Sources */,
 				D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */,
 				D6A72ACE1DC7532A00DD2C66 /* SelectDateVC.swift in Sources */,
+				D69561011E63F02700A230BC /* CCRTags.swift in Sources */,
 				D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454C41DC7520D00D61917 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D62454CD1DC7520D00D61917 /* HeartBeatFHIRTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D62454CF1DC7520D00D61917 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D62454D81DC7520D00D61917 /* HeartBeatFHIRUITests.swift in Sources */,
+				D661153D1E650498006BB14C /* HillingPlatformVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D62454CA1DC7520D00D61917 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D62454B31DC7520C00D61917 /* HeartBeatFHIR */;
-			targetProxy = D62454C91DC7520D00D61917 /* PBXContainerItemProxy */;
-		};
-		D62454D51DC7520D00D61917 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D62454B31DC7520C00D61917 /* HeartBeatFHIR */;
-			targetProxy = D62454D41DC7520D00D61917 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D60193911DC9CC9B006312FC /* MyInfo.storyboard */ = {
@@ -677,64 +553,6 @@
 			};
 			name = Release;
 		};
-		D62454E01DC7520D00D61917 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = E3K4HTC5RG;
-				INFOPLIST_FILE = HeartBeatFHIRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeartBeatFHIR.app/HeartBeatFHIR";
-			};
-			name = Debug;
-		};
-		D62454E11DC7520D00D61917 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = E3K4HTC5RG;
-				INFOPLIST_FILE = HeartBeatFHIRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeartBeatFHIR.app/HeartBeatFHIR";
-			};
-			name = Release;
-		};
-		D62454E31DC7520D00D61917 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = E3K4HTC5RG;
-				INFOPLIST_FILE = HeartBeatFHIRUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = HeartBeatFHIR;
-			};
-			name = Debug;
-		};
-		D62454E41DC7520D00D61917 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = E3K4HTC5RG;
-				INFOPLIST_FILE = HeartBeatFHIRUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIRUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = HeartBeatFHIR;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -752,24 +570,6 @@
 			buildConfigurations = (
 				D62454DD1DC7520D00D61917 /* Debug */,
 				D62454DE1DC7520D00D61917 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D62454DF1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D62454E01DC7520D00D61917 /* Debug */,
-				D62454E11DC7520D00D61917 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D62454E21DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIRUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D62454E31DC7520D00D61917 /* Debug */,
-				D62454E41DC7520D00D61917 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

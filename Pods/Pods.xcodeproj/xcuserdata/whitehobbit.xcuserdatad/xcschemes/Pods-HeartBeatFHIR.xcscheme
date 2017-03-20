@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C357AF1F095D101631D0AB6B8976F2F8"
+               BlueprintIdentifier = "3254E243E5403DC0B337833E5852A4DB"
                BuildableName = "Pods_HeartBeatFHIR.framework"
                BlueprintName = "Pods-HeartBeatFHIR"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C357AF1F095D101631D0AB6B8976F2F8"
+            BlueprintIdentifier = "3254E243E5403DC0B337833E5852A4DB"
             BuildableName = "Pods_HeartBeatFHIR.framework"
             BlueprintName = "Pods-HeartBeatFHIR"
             ReferencedContainer = "container:Pods.xcodeproj">

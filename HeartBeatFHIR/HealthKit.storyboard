@@ -301,9 +301,9 @@
                         <color key="backgroundColor" red="0.92156862750000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Tlc-OV-JrP" firstAttribute="top" secondItem="TaE-ad-AQc" secondAttribute="bottom" constant="20" id="9Tt-2C-HZs"/>
-                            <constraint firstItem="WdP-lU-aZL" firstAttribute="top" secondItem="Tlc-OV-JrP" secondAttribute="bottom" constant="20" id="Pza-bw-tPi"/>
                             <constraint firstItem="Tlc-OV-JrP" firstAttribute="width" secondItem="mxS-ZA-ckQ" secondAttribute="width" multiplier="0.95" id="Yby-vr-hD4"/>
                             <constraint firstItem="Tlc-OV-JrP" firstAttribute="centerX" secondItem="mxS-ZA-ckQ" secondAttribute="centerX" id="oJz-We-bsX"/>
+                            <constraint firstItem="WdP-lU-aZL" firstAttribute="top" secondItem="Tlc-OV-JrP" secondAttribute="bottom" constant="20" id="wuG-yL-gqC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -327,7 +327,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="mG3-oE-xJA">
-                                <rect key="frame" x="10" y="84" width="356" height="514"/>
+                                <rect key="frame" x="10" y="84" width="356" height="454"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDataCell" textLabel="lHD-qV-U3y" detailTextLabel="iDh-73-gDz" style="IBUITableViewCellStyleValue1" id="2hD-Pu-Sbb">
@@ -364,11 +364,34 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5J-Ih-qxn">
+                                <rect key="frame" x="9.5" y="553" width="356" height="45"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.40000000000000002" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="khM-db-oAi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Hilling Platform Upload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickHillingUpload:" destination="d8m-1d-jIX" eventType="touchUpInside" id="Snw-RF-eCg"/>
+                                    <action selector="clickHillingUpload:" destination="Gjy-6p-Zoz" eventType="touchUpInside" id="bsk-Zb-BFg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="nRq-r0-2KI" firstAttribute="top" secondItem="mG3-oE-xJA" secondAttribute="bottom" constant="20" id="1X0-Ug-RJ0"/>
                             <constraint firstItem="mG3-oE-xJA" firstAttribute="width" secondItem="oxG-br-nNm" secondAttribute="width" multiplier="0.95" id="7Mm-Sg-q95"/>
+                            <constraint firstItem="g5J-Ih-qxn" firstAttribute="centerX" secondItem="oxG-br-nNm" secondAttribute="centerX" id="cAO-JY-EHm"/>
+                            <constraint firstItem="g5J-Ih-qxn" firstAttribute="top" secondItem="mG3-oE-xJA" secondAttribute="bottom" constant="15" id="eue-q3-hFq"/>
+                            <constraint firstItem="nRq-r0-2KI" firstAttribute="top" secondItem="g5J-Ih-qxn" secondAttribute="bottom" constant="20" id="gRw-bF-kaZ"/>
+                            <constraint firstItem="g5J-Ih-qxn" firstAttribute="width" secondItem="oxG-br-nNm" secondAttribute="width" multiplier="0.95" id="odE-2q-HBy"/>
                             <constraint firstItem="mG3-oE-xJA" firstAttribute="top" secondItem="xud-g9-l6D" secondAttribute="bottom" constant="20" id="pQ4-jC-JON"/>
                             <constraint firstItem="mG3-oE-xJA" firstAttribute="centerX" secondItem="oxG-br-nNm" secondAttribute="centerX" id="raT-Sf-SNT"/>
                         </constraints>
@@ -379,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7R1-gL-MZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4585" y="-248"/>
+            <point key="canvasLocation" x="4584.8000000000002" y="-248.72563718140933"/>
         </scene>
         <!--Detail-->
         <scene sceneID="U19-zI-kVE">
@@ -571,7 +594,7 @@
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
-                                <state key="normal" title="Upload">
+                                <state key="normal" title="FHIR Server Upload">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

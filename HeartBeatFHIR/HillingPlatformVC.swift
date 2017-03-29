@@ -11,16 +11,18 @@ import FHIR
 import Alamofire
 import SwiftyJSON
 
-class HillingPlatformVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HillingPlatformVC: UIViewController {
     
     @IBOutlet weak var hpaButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     
-    var hillingData = [String: [String: [Results]]]()
-    var providers = [String]()
-    var hillingDataKey = [String: [String]]()
+    @IBOutlet weak var nhisBtn: UIButton!
+    @IBOutlet weak var uracleBtn: UIButton!
+    @IBOutlet weak var snuhBtn: UIButton!
+    @IBOutlet weak var healthKitBtn: UIButton!
+    @IBOutlet weak var lsBtn: UIButton!
     
-    var hd = [String: [Results]]()
+    let activityIndicator = UIActivityIndicatorView()
+    var providerData = [Date: String]()
     
     let dateFormatter: DateFormatter = {
         let dateFormat = DateFormatter()
@@ -31,30 +33,18 @@ class HillingPlatformVC: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         print("============ HPAVC viewDidLoad() ============")
         super.viewDidLoad()
-        connectHPA = prefs.bool(forKey: "connectHpa")
-        print("viewDidLoad() \(connectHPA)")
-        if connectHPA {
-            hpaButton.isEnabled = false
-            self.getHPAData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("=================== HPAVC viewWillAppear===================")
         automaticallyAdjustsScrollViewInsets = false
         super.viewWillAppear(animated)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.rowHeight = 60
-        self.tableView.cornerRadius = 7.0
 //        self.getFHIR()
-        hd.removeAll()
-        providers.removeAll()
         connectHPA = prefs.bool(forKey: "connectHpa")
         if connectHPA {
             hpaButton.isEnabled = false
-            self.getHPAData()
         }
+        setActivityIndicator()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,72 +52,6 @@ class HillingPlatformVC: UIViewController, UITableViewDelegate, UITableViewDataS
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        let sectionSize = self.providers.count == 0 ? 1 : self.providers.count
-        print("INFO: numberOfSections() sectionSize: \(sectionSize)")
-        return sectionSize
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        print("\n\nkeyCount: \(self.heartRateDicKey.count)")
-        var size = 0
-        for i in 0...self.providers.count {
-            if section == i {
-                if !self.providers.isEmpty {
-                    print("INFO: tableView(_:numberOfRowsInSection:) providers[\(i)]: \(providers[i])")
-//                    size = (self.hillingData[self.providers[i]]?.count)!
-                    size = (self.hd[providers[i]]?.count)!
-                }
-            }
-        }
-        print("INFO: tableView(_:numberOfRowsInSection:) size: \(size)")
-        return size
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HillingCell", for: indexPath)
-        
-        let provider = self.providers[indexPath.section]
-        var keys = [String]()
-        var values = [String]()
-        var units = [String]()
-        var types = [String]()
-        var descriptions = [String]()
-        
-        for key in hd[provider]! {
-            keys.append(key.dateTime)
-            values.append(key.value)
-            units.append(key.unit)
-            types.append(key.type)
-            descriptions.append(key.description)
-        }
-//        let key = self.heartRateDicKey[indexPath.row]
-//        print("\n\n\(key)")
-//        cell.textLabel?.text = "\((self.hillingData[provider]?[key!]?.min())!) -  \((self.heartRateDic[key]?.max())!) (\((self.heartRateDic[key]?.count)!))"
-        cell.textLabel?.text = "\(descriptions[indexPath.row]) \(values[indexPath.row])\(units[indexPath.row])"
-        cell.detailTextLabel?.text = keys[indexPath.row]
-        
-        
-        return cell
-    }
-    
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print("INFO: tableView(_:titleForHeaderInSection:) section: \(section)")
-        let text: String? = self.providers.isEmpty ? nil : self.providers[section]
-        return text
-    }
-    
-    func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            return
-        }
-    }
     @IBAction func clickHpaButton(_ sender: Any) {
         guard let sender = sender as? UIButton else {
             return
@@ -136,7 +60,7 @@ class HillingPlatformVC: UIViewController, UITableViewDelegate, UITableViewDataS
         HTOS_API.registerHpaToken(user: user["id"]) { (json, flag) in
             print(json)
             isResistered = flag
-            //            print(isResistered)
+//            print(isResistered)
             
             if isResistered {
                 HTOS_API.connectRepository(user: "ict.demo.hongil4@gmail.com") { (data) in
@@ -172,150 +96,145 @@ class HillingPlatformVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    // MARK: - 테이블셀 사이즈에 맞춰 테이블뷰 조절
-    func tableViewAutoHeight() {
-        if self.tableView.contentSize.height < self.tableView.frame.height {
-            var frame: CGRect = self.tableView.frame
-            frame.size.height = self.tableView.contentSize.height
-            self.tableView.frame = frame
+    @IBAction func btnClicked(_ sender: UIButton) {
+        
+        guard connectHPA else {
+            errorAlert("힐링플랫폼 연동 후 사용하세요.")
+            return
         }
+//        getHPAData(sender: sender)
+        self.performSegue(withIdentifier: "toHillingProvider", sender: sender)
     }
-    
     
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "fhirServerToFhirDate" {
-//            let destinationVC = segue.destination as! FhirDateVC
-//            let myIndexPath = self.tableView.indexPathForSelectedRow
-//            let low = (myIndexPath as NSIndexPath?)?.row
-//            
-//            for obs in self.obsDic[heartRateDicKey[low!]]! {
-//                destinationVC.obss.append(obs)
-//                destinationVC.title = heartRateDicKey[low!]
-//            }
-//        }
+        
+        guard let sender = sender as? UIButton else {
+            return
+        }
+        
+        let destinationVC = segue.destination as! HillingProviderDataVC
+        var type: HPAProvider!
+        
+        switch sender {
+        case nhisBtn:
+            print("INFO: clicked nhicBtn")
+            type = .NHIS
+        case snuhBtn:
+            print("INFO: clicked snuhBtn")
+            type = .SNUH
+        case uracleBtn:
+            print("INFO: clicked uracleBtn")
+            type = .URACLE
+        case lsBtn:
+            type = .LIFESEMANTICS
+        case healthKitBtn:
+            print("INFO: clicked healthKitBtn")
+            type = .HEALTHKIT
+        default:
+            print("INFO: default")
+            type = .NONE
+        }
+        print("INFO: \(type.toString()) clicked")
+        destinationVC.type = type
+//        destinationVC.title = type.toString()
+//        destinationVC.providerData = self.providerData
     }
     
-    func getHPAData() {
-        let user = "ict.demo.hongil4@gmail.com"
-        
-        HTOS_API.getHPAData(user: user) { datas in
+    func getHPAData(_ user: String = "ict.demo.hongil4@gmail.com", sender: UIButton) {
+        var type: HPAProvider
+        self.providerData.removeAll()
+        startActivityIndicator()
+        switch sender {
+        case self.snuhBtn:
+            type = .SNUH
+        case self.uracleBtn:
+            type = .URACLE
+        case self.nhisBtn:
+            type = .NHIS
+        case self.healthKitBtn:
+            type = .HEALTHKIT
+        default:
+            type = .NONE
+        }
+        print(type.rawData())
+        HTOS_API.getHPAData(user: user, provider: type.rawData()) { datas in
             guard let datas = datas else {
-                print("ERROR: callback is NULL")
+                self.errorAlert("ERROR: callback is NULL")
                 return
             }
 //            print(datas)
             
             guard let docsArray = datas["documents"].array else {
-                if let error = datas.string {
-                    print(error)
+                if let error = datas["error"] as JSON? {
+                    self.errorAlert("\(error)")
                 } else {
-                    print("ERROR: \"documnets\" is not found")
+                    self.errorAlert("ERROR: \"documnets\" is not found")
                 }
+                self.stopActivityIndicator()
                 return
             }
             let dateFormatYYMMdd = DateFormatter()
             dateFormatYYMMdd.dateFormat = "YY. MM. dd"
             let dateFormatYYYYMMddhhmmss = DateFormatter()
-            dateFormatYYYYMMddhhmmss.dateFormat = "YYYYMMddhhmmss"
+            dateFormatYYYYMMddhhmmss.dateFormat = "YYYYMMddHHmmss"
             
             for docs in docsArray {
                 guard let results = docs["results"].array, let provider = docs["provider"].string else {
                     return
                 }
-                
-                if !self.providers.contains(provider) {
-                    self.providers.append(provider)
-                    self.hillingData[provider] = [String: [Results]]()
-                    self.hillingDataKey[provider] = [String]()
-                    self.hd[provider] = [Results]()
+                print("\(provider)")
+                guard type == HPAProvider(provider) else {
+                    print("ERROR: type is not match \(type)")
+                    continue
                 }
+                
+                print("INFO: type is matched \(type)")
                 
                 for result in results {
 //                    guard result["type"].string == "심박" else {
-//                        break
+//                        continue
 //                    }
-                    guard let value = result["value"].string, let oid = result["oid"].string else {
-                        break
-                    }
+                    
                     guard let tmp = Results(result) else {
                         break
                     }
-
-                    print(tmp)
                     
-                    let tt = oid.replacingOccurrences(of: "vitalsigns.", with: "")
-                    var date = dateFormatYYYYMMddhhmmss.date(from: tt)
-                    var dateStr = dateFormatYYMMdd.string(from: date!)
-                    if !(self.hillingDataKey[provider]?.contains(dateStr))! {
-                        self.hillingDataKey[provider]?.append(dateStr)
-                        self.hillingData[provider]?[dateStr] = [Results]()
-                    }
-                    self.hillingData[provider]?[tmp.dateTime]?.append(tmp)
-
+                    let tt = tmp.oid.replacingOccurrences(of: "vitalsigns.", with: "")
+                    let date = dateFormatYYYYMMddhhmmss.date(from: tt)
+                    let dateStr = dateFormatYYMMdd.string(from: date!)
+                    let val = "\(tmp.description) \(tmp.value) \(tmp.unit)"
                     
-                    self.hd[provider]?.append(tmp)
+                    print("INFO: key: \(date) val: \(val)")
+                    self.providerData[date!] = val
                 }
             }
-            print("INFO: hillingData: \(self.hillingData)")
-            print("INFO: hillingData.providr.size: \(self.hillingData)")
-            print("INFO: providers: \(self.providers)")
-            
-            for key in self.providers {
-                self.hillingDataKey[key]?.sort()
-                self.hillingDataKey[key]?.reverse()
-            }
-            self.reloadTable()
+            self.stopActivityIndicator()
+            self.performSegue(withIdentifier: "toHillingProvider", sender: sender)
         }
     }
-}
-
-struct Documents {
-    var results = [Results]()
-    var provider: String
-    var count: Int
     
-    init?(_ json: JSON) {
-        guard let results = json["results"].array,
-            let provider = json["provider"].string,
-            let count = json["count"].int else {
-            return nil
-        }
-        
-        for result in results {
-            self.results.append(Results(result)!)
-        }
-        self.provider = provider
-        self.count = count
+    func errorAlert(_ msg: String = "Create Failed") {
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
     }
-}
-
-struct Results {
-    var type: String
-    var value: String
-    var oid: String
-    var dateTime: String
-    var unit: String
-    var description: String
     
-    init?(_ json: JSON) {
-        guard let type = json["type"].string,
-            let value = json["value"].string,
-            let oid = json["oid"].string,
-            let dateTime = json["datetime"].string,
-            let unit = json["unit"].string,
-            let description = json["description"].string else {
-            return nil
-        }
-        
-        self.type = type
-        self.value = value
-        self.oid = oid
-        self.dateTime = dateTime
-        self.unit = unit
-        self.description = description
-        return
+    func setActivityIndicator() {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+    }
+    
+    func startActivityIndicator() {
+        view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
     }
 }

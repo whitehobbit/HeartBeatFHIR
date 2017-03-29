@@ -38,11 +38,11 @@ class HTOS_API {
 //                let statusCode = (response.response?.statusCode)!
 //                switch statusCode {
 //                case 201:
-//                    debugPrint("401: \(json)")
+//                    print("401: \(json)")
 //                case 202:
-//                    debugPrint("402: \(json)")
+//                    print("402: \(json)")
 //                default:
-//                    debugPrint("default: \(json)")
+//                    print("default: \(json)")
 //                }
                 print(json)
                 completion(json, true)
@@ -115,11 +115,51 @@ class HTOS_API {
         }
     }
     
-    static func getHPAData(user: String?, completion: @escaping (_ datas: JSON?) -> ()) {
+    static func getHpaData(user: String?, handles: String, completion: @escaping (_ datas: JSON?) -> ()) {
+        guard let user = user else {
+            completion(makeErrorMsg(name: "USER_EMPTY", msg: "User id is empty"))
+            return
+        }
+        guard let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/ccr/values") else {
+            completion(makeErrorMsg(name: "URL_NOT_FOUND", msg: "URL is Not Found"))
+            return
+        }
+        
+        let handles = deleteSpace(handles)
+        
+        let date = { () -> String in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+            return dateFormatter.string(from: Date())
+        }()
+        
+        //let url: URL! = URL(string: "https://ict.idles.co.kr:8445/htos-api/hpadaptor/repository/ict.demo.hongil4@gmail.com/ccr/values")
+        let headers: HTTPHeaders = [
+            "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let params = [
+            "handle": handles,
+            "search":"{\"period\":{\"from\":\"2014-03-01 12:11:32\",\"to\":\"\(date)\" },\"category\":[\"vitalsigns\"]}",
+            "encoding":"[\"utf-8\"]"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json)
+            case .failure(let error):
+                completion(makeErrorMsg(name: "ALAMOFIRE_ERROR", msg: "\(error)"))
+            }
+        }
+    }
+    
+    static func getHPAData(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
         guard let user = user else {
             return
         }
-        getHPAHandle(user: user) { datas in
+        getHPAHandle(user: user, provider: provider) { datas in
             guard let json = datas else {
                 let res = JSON("Error: callback == nil")
                 completion(res)
@@ -128,7 +168,7 @@ class HTOS_API {
             
             let date = { () -> String in 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss"
+                dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
                 return dateFormatter.string(from: Date())
             }()
             
@@ -168,13 +208,45 @@ class HTOS_API {
         }
     }
     
-    static func getHPAHandle(user: String?, completion: @escaping (_ datas: JSON?) -> ()) {
+    static func getHpaHandle(user: String?, provider: String = "", type: String = "ccr", completion: @escaping (_ datas: JSON?) -> ()) {
+        print("Info: getHPAHandle")
+        guard let user = user else {
+            print("Error: user == nil")
+            return
+        }
+        var hpo = provider != "" ? "hpo=\(provider),": provider
+        
+        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/handles")!
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let param = [
+            "filter": "(&(xdt>=201401010000+0900)(htype=\(type)))",
+            "base": "\(hpo)huid=\(user),dc=htos",
+            "verbose": "false"
+        ]
+        
+        Alamofire.request(url, method: .post, parameters: param, headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json)
+            case .failure(let error):
+                completion(nil)
+            }
+        }
+    }
+    
+    static func getHPAHandle(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
         
         print("Info: getHPAHandle")
         guard let user = user else {
             print("Error: user == nil")
             return
         }
+        var hpo = provider != nil ? "hpo=\(provider!),": ""
         
         let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/handles")!
         
@@ -184,7 +256,7 @@ class HTOS_API {
         ]
         let param = [
             "filter": "(&(xdt>=201401010000+0900)(htype=ccr))",
-            "base": "huid=\(user),dc=htos",
+            "base": "\(hpo)huid=\(user),dc=htos",
             "verbose": "false"
         ]
         
@@ -229,8 +301,6 @@ class HTOS_API {
             }
         }
     }
-    
-    
 }
 
 struct HPA_TOKEN {
@@ -249,6 +319,7 @@ struct FHIR_TOKEN {
     let scope = " write read"
 }
 
+// MARK: - Inner Webrowser
 class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
@@ -286,6 +357,7 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         
         self.title = "Dropbox 연결"
+        
         self.webView = WKWebView(frame: self.view.bounds)
         
         indicator.center = view.center
@@ -296,6 +368,7 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
         
         self.webView.navigationDelegate = self
         
+        indicator.stopAnimating()
         self.view.backgroundColor = UIColor.white
         
         self.cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(InAppDropBoxConnectorController.cancel(_:)))
@@ -304,6 +377,7 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if !webView.canGoBack {
             if nil != startURL {
                 loadURL(startURL!)
@@ -313,14 +387,29 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
         }
     }
     
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "nativeCallbackHandler" {
+            print("userContentController")
+        }
+    }
+    
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-//        debugPrint(webView.url?.host)
+//        print(webView.url?.host)
+        let js = "document.body.innerHTML"
+        webView.evaluateJavaScript(js) { result, err in
+            if err == nil {
+                print(result)
+            } else {
+                
+            }
+        }
     }
     
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else {
             return
         }
+        print("didReceive~~: url: \(url)")
         self.endURL = url
     }
     
@@ -328,7 +417,7 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
         guard let url = self.endURL else {
             return
         }
-//        debugPrint("didReceive: url: \(url)")
+        print("didFinish: url: \(url)")
         let jsString = "" + "document.getElementsByTagName('PRE')[0].innerHTML;"
         webView.evaluateJavaScript(jsString) { (result, error) in
             if error == nil {
@@ -336,15 +425,15 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
                 let err = json["error"]
                 
                 if err != nil {
-                    debugPrint(JSON(err))
+                    print(JSON(err))
                 } else {
                     webView.stopLoading()
                     self.successHandler(true)
                     self.presentingViewController?.dismiss(animated: true, completion: nil)
                 }
-                debugPrint(json)
+                print(json)
             } else {
-                debugPrint("didReceive: \n    error: \(error)")
+                print("didFinish: \n    error: \(error)")
                 self.dismiss(true, animated: true)
             }
         }
@@ -365,6 +454,117 @@ class InAppDropBoxConnectorController: UIViewController, WKNavigationDelegate {
     }
 }
 
-func deleteSpace(_ toStr: String) -> String {
-    return toStr.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
+enum HPAProvider {
+    case NHIS, URACLE, SNUH, LIFESEMANTICS, HEALTHKIT, GILH, NONE
+    
+    init(_ rawValue: String) {
+        switch rawValue {
+        case "nhis":
+            self = .NHIS
+        case "uracle":
+            self = .URACLE
+        case "snuh":
+            self = .SNUH
+        case "hk":
+            self = .HEALTHKIT
+        case "ls":
+            self = .LIFESEMANTICS
+        case "gilh":
+            self = .GILH
+        default:
+            self = .NONE
+        }
+    }
+    
+    func rawData() -> String {
+        var temp: String
+        switch self {
+        case .NHIS:
+            temp = "nhis"
+        case .URACLE:
+            temp = "uracle"
+        case .SNUH:
+            temp = "snuh"
+        case .HEALTHKIT:
+            temp = "hk"
+        case .LIFESEMANTICS:
+            temp = "ls"
+        case .GILH:
+            temp = "gilh"
+        default:
+            temp = ""
+        }
+        return temp
+    }
+    
+    func toString() -> String {
+        var temp: String
+        switch self {
+        case .NHIS:
+            temp = "건보공단"
+        case .URACLE:
+            temp = "유라클"
+        case .SNUH:
+            temp = "서울대병원"
+        case .HEALTHKIT:
+            temp = "HealthKit"
+        case .LIFESEMANTICS:
+            temp = "라이프로그"
+        case .GILH:
+            temp = "길병원"
+        default:
+            temp = ""
+        }
+        return temp
+    }
+}
+
+// MARK: - Structure
+
+struct Documents {
+    var results = [Results]()
+    var provider: String
+    var count: Int
+    
+    init?(_ json: JSON) {
+        guard let results = json["results"].array,
+            let provider = json["provider"].string,
+            let count = json["count"].int else {
+                return nil
+        }
+        
+        for result in results {
+            self.results.append(Results(result)!)
+        }
+        self.provider = provider
+        self.count = count
+    }
+}
+
+struct Results {
+    var type: String
+    var value: String
+    var oid: String
+    var dateTime: String
+    var unit: String
+    var description: String
+    
+    init?(_ json: JSON) {
+        guard let type = json["type"].string,
+            let value = json["value"].string,
+            let oid = json["oid"].string,
+            let dateTime = json["datetime"].string,
+            let unit = json["unit"].string,
+            let description = json["description"].string else {
+                return nil
+        }
+        
+        self.type = type
+        self.value = value
+        self.oid = oid
+        self.dateTime = dateTime
+        self.unit = unit
+        self.description = description
+        return
+    }
 }

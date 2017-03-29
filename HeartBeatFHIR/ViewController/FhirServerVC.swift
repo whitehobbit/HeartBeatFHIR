@@ -16,6 +16,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var hpaButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    let activityIndicator = UIActivityIndicatorView()
     var heartRateDic = [String: [Int]]()
     var obsDic = [String: [Observation]]()
     var heartRateDicKey = [String]()
@@ -38,6 +39,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.tableView.delegate = self
         self.tableView.rowHeight = 60
         self.tableView.cornerRadius = 7.0
+        self.setActivityIndicator()
         self.getFHIR()
     }
 
@@ -111,6 +113,7 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         guard let pId = prefs.string(forKey: "patientId") else {
             return
         }
+        startActivityIndicator()
         let code = "8867-4"
         heartRateDic.removeAll()
         heartRateDicKey.removeAll()
@@ -146,90 +149,26 @@ class FhirServerVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 self.heartRateDicKey.sort()
                 self.heartRateDicKey.reverse()
                 self.reloadTable()
-//                searchUrl = searchUrl + "&_count=" + total
-//                print("in: \(searchUrl)")
-//
-//                Alamofire.request(searchUrl).validate().responseJSON { res in
-//                    
-//                    switch res.result {
-//                    case .success(let value):
-//                        let bundleJson = JSON(value)
-////                        print(bundleJson["entry"].count)
-//                        let obsEntrys = bundleJson["entry"].array!
-//                        for obsEntry in obsEntrys {
-//                            let obsResource = obsEntry["resource"]
-//                            let obs = Observation(json: obsResource.dictionaryObject)
-//                            print(obs.id)
-//                        }
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                    
-//                }
+
             case .failure(let error):
                 print(error)
             }
+            self.stopActivityIndicator()
         }
-//        let search = Observation.search([
-//            "code" : "8867-4",
-//            "patient" : user["patientId"]!
-//            ])
-//        
-//        search.perform(fhirServer) { (bundle, error) in
-//            if error != nil {
-//                dump(error)
-//            } else {
-//                var bundleEntry = [BundleEntry]()
-//                var bund = bundle
-//                for entry in (bundle?.entry)! {
-//                    bundleEntry.append(entry)
-//                }
-////                print("\n\ncount: \(bundleEntry.count)")
-//                
-//                while (bund?.link?.contains { element in
-//                    bund?.link?.removeAll()
-//                    if element.relation == "next" {
-//                        bund?.link?.append(element)
-//                        return true
-//                    } else {
-//                        return false
-//                    }
-//                    })! {
-//                        let url = (bund?.link?.first?.url?.absoluteURL)!
-//                        bund = FHIR.Bundle(json: FhirJsonManager.getFhirJson(url: url))
-//                        for entry in (bund?.entry)! {
-//                            bundleEntry.append(entry)
-//                        }
-//                }
-////                print("\n\ncount: \(bundleEntry.count)")
-//                
-//                for entry in bundleEntry {
-//                    let json = FhirJsonManager.getFhirJson(url: (entry.fullUrl?.absoluteURL)!)
-//                    FhirJsonManager.printJsonPretty(json!)
-//                    let obs = Observation(json: json)
-//                    let date = self.dateFormatter.string(from: (obs.effectiveDateTime?.nsDate)!)
-//                    let value: Int = (obs.valueQuantity?.value?.intValue)!
-////                    print("value: "); dump(value)
-//                    if heartRateDicTemp[date] == nil {
-//                        heartRateDicTemp[date] = [Int]()
-//                        self.obsDic[date] = [Observation]()
-//                    }
-//                    if !(heartRateKeyTemp.contains(date)) {
-//                        heartRateKeyTemp.append(date)
-//                    }
-//                    heartRateDicTemp[date]?.append(value)
-//                    self.obsDic[date]?.append(obs)
-////                    print("heartRateDicTemp: \(date)"); dump(heartRateDicTemp)
-////                    print("heartRateKeyTemp: "); dump(heartRateKeyTemp)
-//                }
-//                self.heartRateDicKey = heartRateKeyTemp.sorted().reversed()
-//                dump(self.heartRateDicKey)
-//                self.heartRateDic = heartRateDicTemp
-//            }
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-        
+    }
+    
+    func setActivityIndicator() {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+    }
+    
+    func startActivityIndicator() {
+        view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
     }
 }

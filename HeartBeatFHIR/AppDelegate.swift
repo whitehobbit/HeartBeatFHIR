@@ -11,29 +11,6 @@ import HealthKit
 import FHIR
 import SwiftyDropbox
 
-// uesrInfo
-let user = [ "id" : "test@test.com", "password" : "test", "patientId" : "7", "familyName": "이", "givenName" : "진기", "telecom" : "82+ 10-7769-1093", "gender" : "남", "birthDate" : "1990-01-14" ]
-
-var prefs = UserDefaults.standard
-
-let currentVersion = "0.0.1"
-var isLogined: Bool = false
-
-// HealthKit
-var bpmUnit = HKUnit(from: "count/min")
-var heartRates = [HKQuantitySample]()
-var healthKitManager: HealthKitManager? = HealthKitManager()
-
-// FHIR
-let baseUrl = "http://hitlab.gachon.ac.kr:8888/gachon-fhir-server/baseDstu2"
-let fhirServer = FHIROpenServer(baseURL: URL(string: baseUrl)!)
-//let fhirServer: Server = Server(baseURL: URL(string: baseUrl)!)
-
-// HPA
-var connectHPA: Bool = false
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -81,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        getHeartRates()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -100,33 +78,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-}
-
-extension UIView {
-    @IBInspectable var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
-        }
-    }
-    @IBInspectable var borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        set {
-            layer.borderWidth = newValue
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor? {
-        get {
-            return UIColor(cgColor: layer.borderColor!)
-        }
-        set {
-            layer.borderColor = newValue?.cgColor
-        }
-    }
 }

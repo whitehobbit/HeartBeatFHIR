@@ -88,6 +88,22 @@ class HealthKitManager {
         store.execute(query)
     }
     
+    func readHeartRates(from fromDate: Date, to toDate: Date, completion: (([AnyObject]?, Error?) -> Void)!) {
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForSamples(withStart: fromDate, end: toDate, options: HKQueryOptions())
+        
+        // 2. Order the workouts by date
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        
+        // 3. Create the query
+        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor]) { (sampleQuery, result, error) -> Void in
+            completion(result, error)
+        }
+        // 4. Excute the query
+        store.execute(query)
+    }
+    
     func saveHeartRates(_ heartRate: Observation) -> Bool {
         let flag = false
 //        let value = Double((heartRate.valueQuantity?.value)!)

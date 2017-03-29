@@ -18,6 +18,7 @@ class DetailHealthKitVC: UIViewController {
         formatter.dateFormat = "M월 d일 a h:m"
         return formatter
     }()
+    let activityIndicator = UIActivityIndicatorView()
     var deviceName: String = ""
     var sourceName: String = ""
     
@@ -37,6 +38,11 @@ class DetailHealthKitVC: UIViewController {
         sourceLabel?.text = sourceName
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setActivityIndicator()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,22 +85,40 @@ class DetailHealthKitVC: UIViewController {
     }
     
     @IBAction func clickUpload(_ sender: AnyObject) {
+        startActivityIndicator()
         let obs = self.makeJsonFhirObservation(heartRate)
         obs?.create(fhirServer as! FHIRServer) { error in
             if (error != nil) {
                 print("\n\(error)")
-                let alert = UIAlertController(title: "Error", message: "Create Failed", preferredStyle: UIAlertControllerStyle.alert)
+                self.stopActivityIndicator()
+                let alert = UIAlertController(title: "Error", message: "전송 실패", preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 alert.addAction(alertAction)
                 self.present(alert, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController(title: "Success", message: "Create Succeed", preferredStyle: UIAlertControllerStyle.alert)
+                self.stopActivityIndicator()
+                let alert = UIAlertController(title: "Success", message: "전송 성공", preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 alert.addAction(alertAction)
                 self.present(alert, animated: true, completion: nil)
             }
         }
         FhirJsonManager.printJsonPretty((obs?.asJSON())!)
+    }
+    
+    func setActivityIndicator() {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+    }
+    
+    func startActivityIndicator() {
+        view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
     }
     
     /*

@@ -15,6 +15,8 @@
 		D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */; };
 		D661153D1E650498006BB14C /* HillingPlatformVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661153C1E650498006BB14C /* HillingPlatformVC.swift */; };
 		D6674CAB1DD2E22400CDA524 /* MyInfoTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */; };
+		D68416021E821F0C0017D5B0 /* HillingPlatformTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68416011E821F0C0017D5B0 /* HillingPlatformTableVC.swift */; };
+		D68416041E83707B0017D5B0 /* HillingProviderDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68416031E83707B0017D5B0 /* HillingProviderDataVC.swift */; };
 		D69560FF1E5569A800A230BC /* HillingServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69560FE1E5569A800A230BC /* HillingServer.storyboard */; };
 		D69561011E63F02700A230BC /* CCRTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69561001E63F02700A230BC /* CCRTags.swift */; };
 		D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */; };
@@ -34,6 +36,7 @@
 		D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */; };
 		D6A72ADA1DC7545500DD2C66 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A72AD91DC7545500DD2C66 /* HealthKit.framework */; };
 		D6BF65831E5538ED0001A7AA /* CCRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BF65821E5538ED0001A7AA /* CCRManager.swift */; };
+		D6CE92791E8B935C0017ED46 /* Global+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CE92781E8B935C0017ED46 /* Global+Extension.swift */; };
 		D6F534D61E4054EB002180C6 /* FhirDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D51E4054EB002180C6 /* FhirDateVC.swift */; };
 		D6F534DA1E416C36002180C6 /* FHIRDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */; };
 		D6F534DC1E4C52E4002180C6 /* HTOS_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F534DB1E4C52E3002180C6 /* HTOS_API.swift */; };
@@ -55,6 +58,8 @@
 		D62454C11DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D661153C1E650498006BB14C /* HillingPlatformVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HillingPlatformVC.swift; sourceTree = "<group>"; };
 		D6674CAA1DD2E22400CDA524 /* MyInfoTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoTableVC.swift; path = ViewController/MyInfoTableVC.swift; sourceTree = "<group>"; };
+		D68416011E821F0C0017D5B0 /* HillingPlatformTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HillingPlatformTableVC.swift; path = ViewController/HillingPlatformTableVC.swift; sourceTree = "<group>"; };
+		D68416031E83707B0017D5B0 /* HillingProviderDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HillingProviderDataVC.swift; path = ViewController/HillingProviderDataVC.swift; sourceTree = "<group>"; };
 		D69560FE1E5569A800A230BC /* HillingServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HillingServer.storyboard; sourceTree = "<group>"; };
 		D69561001E63F02700A230BC /* CCRTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCRTags.swift; sourceTree = "<group>"; };
 		D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoVC.swift; path = ViewController/MyInfoVC.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		D6A72ADB1DC7545500DD2C66 /* HeartBeatFHIR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeartBeatFHIR.entitlements; sourceTree = "<group>"; };
 		D6BF65801E52E8870001A7AA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D6BF65821E5538ED0001A7AA /* CCRManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCRManager.swift; sourceTree = "<group>"; };
+		D6CE92781E8B935C0017ED46 /* Global+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Global+Extension.swift"; sourceTree = "<group>"; };
 		D6F534D51E4054EB002180C6 /* FhirDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FhirDateVC.swift; path = ViewController/FhirDateVC.swift; sourceTree = "<group>"; };
 		D6F534D91E416C36002180C6 /* FHIRDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRDetailVC.swift; sourceTree = "<group>"; };
 		D6F534DB1E4C52E3002180C6 /* HTOS_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTOS_API.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				D6A72AD31DC753AA00DD2C66 /* ChartsDefaultSetting.swift */,
 				D6A72AD41DC753AA00DD2C66 /* FhirJsonManager.swift */,
 				D6A72AD51DC753AA00DD2C66 /* HealthKitManager.swift */,
+				D6CE92781E8B935C0017ED46 /* Global+Extension.swift */,
 				D6A72AB61DC752B500DD2C66 /* storyboard */,
 				D6A72AD01DC7533200DD2C66 /* VC */,
 				D62454BE1DC7520D00D61917 /* Assets.xcassets */,
@@ -158,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				D661153C1E650498006BB14C /* HillingPlatformVC.swift */,
+				D68416011E821F0C0017D5B0 /* HillingPlatformTableVC.swift */,
+				D68416031E83707B0017D5B0 /* HillingProviderDataVC.swift */,
 			);
 			name = "New Group";
 			sourceTree = "<group>";
@@ -257,7 +266,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = WhiteHobbit;
 				TargetAttributes = {
 					D62454B31DC7520C00D61917 = {
@@ -369,6 +378,7 @@
 				D6A72ACC1DC7532A00DD2C66 /* JoinVC.swift in Sources */,
 				D6A72ACD1DC7532A00DD2C66 /* LoginVC.swift in Sources */,
 				D6A72AC91DC7532A00DD2C66 /* DetailHealthKitVC.swift in Sources */,
+				D68416021E821F0C0017D5B0 /* HillingPlatformTableVC.swift in Sources */,
 				D6F534DC1E4C52E4002180C6 /* HTOS_API.swift in Sources */,
 				D6A72ACA1DC7532A00DD2C66 /* FhirServerVC.swift in Sources */,
 				D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */,
@@ -380,6 +390,8 @@
 				D6A72AD81DC753AB00DD2C66 /* HealthKitManager.swift in Sources */,
 				D6A72ACE1DC7532A00DD2C66 /* SelectDateVC.swift in Sources */,
 				D69561011E63F02700A230BC /* CCRTags.swift in Sources */,
+				D68416041E83707B0017D5B0 /* HillingProviderDataVC.swift in Sources */,
+				D6CE92791E8B935C0017ED46 /* Global+Extension.swift in Sources */,
 				D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */,
 				D661153D1E650498006BB14C /* HillingPlatformVC.swift in Sources */,
 			);

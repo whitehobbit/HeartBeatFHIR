@@ -11,13 +11,17 @@ import HealthKit
 import SwiftyJSON
 
 class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    let activityIndicator = UIActivityIndicatorView()
+    
     var heartRates = [HKQuantitySample?]()
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM월 dd일 a hh:mm"
         return formatter
     }()
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +37,12 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         automaticallyAdjustsScrollViewInsets = false
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-
+        setActivityIndicator()
+        
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,6 +96,8 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             errorAlert("name is nil")
             return
         }
+        startActivityIndicator()
+        
         print(name)
         
         let ccrM = CCRManager()
@@ -111,14 +119,31 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 errorAlert()
                 return
             }
-            debugPrint(data)
-            let alert = UIAlertController(title: "Success", message: "Create Succeed", preferredStyle: UIAlertControllerStyle.alert)
+            print(data)
+            
+            self.stopActivityIndicator()
+            let alert = UIAlertController(title: "Success", message: "전송 성공", preferredStyle: UIAlertControllerStyle.alert)
             let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             alert.addAction(alertAction)
             self.present(alert, animated: true, completion: nil)
             
         }
 //                print(ccr.asString())
+    }
+    
+    func setActivityIndicator() {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+    }
+    
+    func startActivityIndicator() {
+        view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
     }
     
     // MARK: - Navigation

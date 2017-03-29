@@ -12,10 +12,11 @@ import HealthKit
 
 class HealthKitGraphVC: UIViewController {
     
-    private var chart: Chart? = nil
-    private var heartRateDicKey = [String]() // [date]
-    private var heartRateDic = [String: [Int]]() // date: [value]
-    private let dateFormatter = DateFormatter()
+    var chart: Chart? = nil
+    var heartRateDicKey = [String]() // [date]
+    var heartRateDic = [String: [Int]]() // date: [value]
+    let dateFormatter = DateFormatter()
+    
     
     @IBOutlet weak var lastHeartRate: UILabel!
     @IBOutlet weak var minHeartRate: UILabel!
@@ -46,7 +47,6 @@ class HealthKitGraphVC: UIViewController {
         }
         self.chartView.addSubview((chart?.view)!)
     }
-    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -182,7 +182,7 @@ class HealthKitGraphVC: UIViewController {
     }
 
     func setDataArea() {
-        self.heartRateDicKey.removeAll()
+        heartRateDicKey.removeAll()
 
         let calcDate = Calendar.current.date(byAdding: Calendar.Component.day, value: -6, to: Date())!
         for i in 0...6 {
@@ -236,7 +236,6 @@ class HealthKitGraphVC: UIViewController {
              return lastTimeFormatter.string(from: lastHeartrate.startDate)
         }()
     }
-    
     
     @IBAction func showAllHeartRates(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "chartToAllHealthKitData", sender: self)

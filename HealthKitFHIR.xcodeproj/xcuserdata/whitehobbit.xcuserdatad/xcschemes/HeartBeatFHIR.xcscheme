@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D62454B31DC7520C00D61917"
-               BuildableName = "HeartBeatFHIR.app"
-               BlueprintName = "HeartBeatFHIR"
-               ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+               BuildableName = "HealthKitFHIR.app"
+               BlueprintName = "HealthKitFHIR"
+               ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -35,7 +36,7 @@
                BlueprintIdentifier = "D62454C71DC7520D00D61917"
                BuildableName = "HeartBeatFHIRTests.xctest"
                BlueprintName = "HeartBeatFHIRTests"
-               ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+               ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +46,7 @@
                BlueprintIdentifier = "D62454D21DC7520D00D61917"
                BuildableName = "HeartBeatFHIRUITests.xctest"
                BlueprintName = "HeartBeatFHIRUITests"
-               ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+               ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D62454B31DC7520C00D61917"
-            BuildableName = "HeartBeatFHIR.app"
-            BlueprintName = "HeartBeatFHIR"
-            ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+            BuildableName = "HealthKitFHIR.app"
+            BlueprintName = "HealthKitFHIR"
+            ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,21 +66,21 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "ko"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      language = "ko">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D62454B31DC7520C00D61917"
-            BuildableName = "HeartBeatFHIR.app"
-            BlueprintName = "HeartBeatFHIR"
-            ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+            BuildableName = "HealthKitFHIR.app"
+            BlueprintName = "HealthKitFHIR"
+            ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +97,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D62454B31DC7520C00D61917"
-            BuildableName = "HeartBeatFHIR.app"
-            BlueprintName = "HeartBeatFHIR"
-            ReferencedContainer = "container:HeartBeatFHIR.xcodeproj">
+            BuildableName = "HealthKitFHIR.app"
+            BlueprintName = "HealthKitFHIR"
+            ReferencedContainer = "container:HealthKitFHIR.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

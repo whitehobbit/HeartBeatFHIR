@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:HeartBeatFHIR.xcodeproj">
+      location = "group:/Users/whitehobbit/HITLab_workspace/HeartBeatFHIR/HealthKitFHIR.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

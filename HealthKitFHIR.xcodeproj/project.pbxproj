@@ -48,7 +48,7 @@
 		D60193951DC9CD39006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MyInfo.strings; sourceTree = "<group>"; };
 		D601939C1DCAB530006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D601939F1DCAB733006312FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartBeatFHIR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62454B41DC7520D00D61917 /* HealthKitFHIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitFHIR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62454B71DC7520D00D61917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D62454BE1DC7520D00D61917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D62454C11DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		D62454B51DC7520D00D61917 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */,
+				D62454B41DC7520D00D61917 /* HealthKitFHIR.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,9 +234,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D62454B31DC7520C00D61917 /* HeartBeatFHIR */ = {
+		D62454B31DC7520C00D61917 /* HealthKitFHIR */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIR" */;
+			buildConfigurationList = D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HealthKitFHIR" */;
 			buildPhases = (
 				64557599360A8C620022BEC2 /* [CP] Check Pods Manifest.lock */,
 				D62454B01DC7520C00D61917 /* Sources */,
@@ -249,9 +249,9 @@
 			);
 			dependencies = (
 			);
-			name = HeartBeatFHIR;
+			name = HealthKitFHIR;
 			productName = HeartBeatFHIR;
-			productReference = D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */;
+			productReference = D62454B41DC7520D00D61917 /* HealthKitFHIR.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HeartBeatFHIR" */;
+			buildConfigurationList = D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HealthKitFHIR" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D62454B31DC7520C00D61917 /* HeartBeatFHIR */,
+				D62454B31DC7520C00D61917 /* HealthKitFHIR */,
 			);
 		};
 /* End PBXProject section */
@@ -551,7 +551,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HeartBeatFHIR" */ = {
+		D62454AF1DC7520C00D61917 /* Build configuration list for PBXProject "HealthKitFHIR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D62454DA1DC7520D00D61917 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HeartBeatFHIR" */ = {
+		D62454DC1DC7520D00D61917 /* Build configuration list for PBXNativeTarget "HealthKitFHIR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D62454DD1DC7520D00D61917 /* Debug */,

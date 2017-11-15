@@ -10,7 +10,6 @@ import UIKit
 import FHIR
 import Alamofire
 import SwiftyJSON
-import SwiftyDropbox
 
 class MyInfoTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

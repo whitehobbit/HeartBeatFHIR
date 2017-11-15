@@ -30,8 +30,8 @@ class HealthKitManager {
     
     // HealthKit Authorization func
     func authorizeHealthKit(_ completion: ((Bool, Error?) -> Void)!) {
-        let healthKitTypesToReads = Set(arrayLiteral: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!)
-        let healthKitTypesToWrites = Set(arrayLiteral: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!)
+        let healthKitTypesToReads = Set(arrayLiteral: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!, HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!)
+        let healthKitTypesToWrites = Set(arrayLiteral: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!, HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!)
         
         // not available device return error
         if !HKHealthStore.isHealthDataAvailable() {
@@ -90,6 +90,40 @@ class HealthKitManager {
     
     func readHeartRates(from fromDate: Date, to toDate: Date, completion: (([AnyObject]?, Error?) -> Void)!) {
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForSamples(withStart: fromDate, end: toDate, options: HKQueryOptions())
+        
+        // 2. Order the workouts by date
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        
+        // 3. Create the query
+        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor]) { (sampleQuery, result, error) -> Void in
+            completion(result, error)
+        }
+        // 4. Excute the query
+        store.execute(query)
+    }
+    
+    func readWeights(_ completion: (([AnyObject]?, Error?) -> Void)!) {
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
+        let past = Date.distantPast
+        let now = Date()
+        // 1. Predicate to read only running workouts
+        let predicate =  HKQuery.predicateForSamples(withStart: past, end: now, options: HKQueryOptions())
+        
+        // 2. Order the workouts by date
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        
+        // 3. Create the query
+        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: [sortDescriptor]) { (sampleQuery, result, error) -> Void in
+            completion(result, error)
+        }
+        // 4. Excute the query
+        store.execute(query)
+    }
+    
+    func readWeights(from fromDate: Date, to toDate: Date, completion: (([AnyObject]?, Error?) -> Void)!) {
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
         // 1. Predicate to read only running workouts
         let predicate =  HKQuery.predicateForSamples(withStart: fromDate, end: toDate, options: HKQueryOptions())
         

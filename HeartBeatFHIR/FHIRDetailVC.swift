@@ -19,8 +19,7 @@ class FHIRDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(obs?.id)
-        print(obs?.valueQuantity?.value)
+
         let heartRate = (self.obs?.valueQuantity?.value)!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M월 d일 a h:m"

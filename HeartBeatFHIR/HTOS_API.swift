@@ -21,7 +21,7 @@ class HTOS_API {
         guard let user = user else {
             return
         }
-        guard let url = URL(string: "\(hpadaptorBaseUrl)/register/\(user)") else {
+        guard let url = URL(string: "\(hpadaptorBaseUrl)/register/\(uid)") else {
             return
         }
         var flag = false
@@ -57,7 +57,7 @@ class HTOS_API {
         guard let user = user else {
             return
         }
-        guard let url = URL(string: "\(hpadaptorBaseUrl)/auth/v2/\(user)/approve/url?repository=\(repository)") else {
+        guard let url = URL(string: "\(hpadaptorBaseUrl)/auth/v2/\(uid)/approve/url?repository=\(repository)") else {
             return
         }
         let headers: HTTPHeaders = [
@@ -88,7 +88,7 @@ class HTOS_API {
             return
         }
         
-        let url: URL = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/documents")!
+        let url: URL = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/documents")!
         let headers: HTTPHeaders = [
             "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
             "Content-Type": "application/x-www-form-urlencoded"
@@ -120,7 +120,7 @@ class HTOS_API {
             completion(makeErrorMsg(name: "USER_EMPTY", msg: "User id is empty"))
             return
         }
-        guard let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/ccr/values") else {
+        guard let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/ccr/values") else {
             completion(makeErrorMsg(name: "URL_NOT_FOUND", msg: "URL is Not Found"))
             return
         }
@@ -154,19 +154,26 @@ class HTOS_API {
             }
         }
     }
-    
-    static func getHPAData(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
+
+    static func getHPAData(user: String?, provider: HPAProvider? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
+        print("INFO: getHPAData")
         guard let user = user else {
             return
         }
-        getHPAHandle(user: user, provider: provider) { datas in
+        getHpaHandle(user: uid, provider: provider) { datas in
             guard let json = datas else {
                 let res = JSON("Error: callback == nil")
                 completion(res)
                 return
             }
             
-            let date = { () -> String in 
+            guard let provider = provider else {
+                let res = JSON("Error: provider == nil")
+                completion(res)
+                return
+            }
+            
+            let date = { () -> String in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
                 return dateFormatter.string(from: Date())
@@ -179,22 +186,48 @@ class HTOS_API {
                 completion(res)
                 return
             }
-            guard let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/ccr/values") else {
-                let res = JSON("Error: URL Error")
-                completion(res)
-                return
-            }
             
             //let url: URL! = URL(string: "https://ict.idles.co.kr:8445/htos-api/hpadaptor/repository/ict.demo.hongil4@gmail.com/ccr/values")
             let headers: HTTPHeaders = [
                 "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
-            let params = [
-                "handle": handles,
-                "search":"{\"period\":{\"from\":\"2014-03-01 12:11:32\",\"to\":\"\(date)\" },\"category\":[\"vitalsigns\"]}",
-                "encoding":"[\"utf-8\"]"
-            ]
+            
+            var tmpUrl: URL? = nil
+            var tmpParams: [String: String]? = nil
+            
+            print(provider.docType())
+            
+            switch provider.docType() {
+            case "ccr":
+                tmpUrl = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/ccr/values")
+                tmpParams = [
+                    "handle": handles,
+                    "search":"{\"period\":{\"from\":\"2014-03-01 12:11:32\",\"to\":\"\(date)\" },\"category\":[\"vitalsigns\"]}",
+                    "encoding":"[\"utf-8\"]"
+                ]
+            case "lifelog":
+                tmpUrl = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/documents")
+                tmpParams = [
+                    "handles": handles,
+                    "encoding":"[\"utf-8\"]"
+                ]
+            default:
+                break
+            }
+            
+            
+            guard let url = tmpUrl else {
+                let res = JSON("Error: URL Error")
+                completion(res)
+                return
+            }
+            
+            guard let params = tmpParams else {
+                let res = JSON("Error: params Error")
+                completion(res)
+                return
+            }
             
             Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { response in
                 switch response.result {
@@ -208,25 +241,85 @@ class HTOS_API {
         }
     }
     
-    static func getHpaHandle(user: String?, provider: String = "", type: String = "ccr", completion: @escaping (_ datas: JSON?) -> ()) {
+//    static func getHPAData(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
+//        guard let user = user else {
+//            return
+//        }
+//        getHPAHandle(user: uid, provider: provider) { datas in
+//            guard let json = datas else {
+//                let res = JSON("Error: callback == nil")
+//                completion(res)
+//                return
+//            }
+//            
+//            let date = { () -> String in 
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+//                return dateFormatter.string(from: Date())
+//            }()
+//            
+//            let handles = deleteSpace(json.rawString()!)
+//            
+//            guard let providerHandles = datas?["handles"] else {
+//                let res = JSON("Error: handles not exist")
+//                completion(res)
+//                return
+//            }
+//            guard let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/ccr/values") else {
+//                let res = JSON("Error: URL Error")
+//                completion(res)
+//                return
+//            }
+//            
+//            //let url: URL! = URL(string: "https://ict.idles.co.kr:8445/htos-api/hpadaptor/repository/ict.demo.hongil4@gmail.com/ccr/values")
+//            let headers: HTTPHeaders = [
+//                "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
+//                "Content-Type": "application/x-www-form-urlencoded"
+//            ]
+//            let params = [
+//                "handle": handles,
+//                "search":"{\"period\":{\"from\":\"2014-03-01 12:11:32\",\"to\":\"\(date)\" },\"category\":[\"vitalsigns\"]}",
+//                "encoding":"[\"utf-8\"]"
+//            ]
+//            
+//            Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { response in
+//                switch response.result {
+//                case .success(let value):
+//                    let json = JSON(value)
+//                    completion(json)
+//                case .failure(let error):
+//                    completion(JSON(error))
+//                }
+//            }
+//        }
+//    }
+
+    static func getHpaHandle(user: String?, provider: HPAProvider?, completion: @escaping (_ datas: JSON?) -> ()) {
         print("Info: getHPAHandle")
         guard let user = user else {
             print("Error: user == nil")
             return
         }
-        var hpo = provider != "" ? "hpo=\(provider),": provider
         
-        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/handles")!
+        guard let provider = provider else {
+            print("Error: provider == nil")
+            return
+        }
+        let hpo = "hpo=\(provider.rawData()),"
+        let type = provider.docType()
         
+        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/handles")!
+        print(url)
         let headers: HTTPHeaders = [
             "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
             "Content-Type": "application/x-www-form-urlencoded"
         ]
         let param = [
             "filter": "(&(xdt>=201401010000+0900)(htype=\(type)))",
-            "base": "\(hpo)huid=\(user),dc=htos",
+            "base": "\(hpo)huid=\(huid),dc=htos",
             "verbose": "false"
         ]
+        print(param)
         
         Alamofire.request(url, method: .post, parameters: param, headers: headers).responseJSON { response in
             switch response.result {
@@ -239,37 +332,69 @@ class HTOS_API {
         }
     }
     
-    static func getHPAHandle(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
-        
-        print("Info: getHPAHandle")
-        guard let user = user else {
-            print("Error: user == nil")
-            return
-        }
-        var hpo = provider != nil ? "hpo=\(provider!),": ""
-        
-        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(user)/handles")!
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let param = [
-            "filter": "(&(xdt>=201401010000+0900)(htype=ccr))",
-            "base": "\(hpo)huid=\(user),dc=htos",
-            "verbose": "false"
-        ]
-        
-        Alamofire.request(url, method: .post, parameters: param, headers: headers).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                completion(json)
-            case .failure(let error):
-                completion(nil)
-            }
-        }
-    }
+//    static func getHpaHandle(user: String?, provider: String = "", type: String = "ccr", completion: @escaping (_ datas: JSON?) -> ()) {
+//        print("Info: getHPAHandle")
+//        guard let user = user else {
+//            print("Error: user == nil")
+//            return
+//        }
+//        var hpo = provider != "" ? "hpo=\(provider),": provider
+//        
+//        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/handles")!
+//        print(url)
+//        let headers: HTTPHeaders = [
+//            "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
+//            "Content-Type": "application/x-www-form-urlencoded"
+//        ]
+//        let param = [
+//            "filter": "(&(xdt>=201401010000+0900)(htype=\(type)))",
+//            "base": "\(hpo)huid=\(huid),dc=htos",
+//            "verbose": "false"
+//        ]
+//        print(param)
+//        
+//        Alamofire.request(url, method: .post, parameters: param, headers: headers).responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                completion(json)
+//            case .failure(let error):
+//                completion(nil)
+//            }
+//        }
+//    }
+    
+//    static func getHPAHandle(user: String?, provider: String? = nil, completion: @escaping (_ datas: JSON?) -> ()) {
+//        
+//        print("Info: getHPAHandle")
+//        guard let user = user else {
+//            print("Error: user == nil")
+//            return
+//        }
+//        var hpo = provider != nil ? "hpo=\(provider!),": ""
+//        
+//        let url = URL(string: "\(hpadaptorBaseUrl)/repository/\(uid)/handles")!
+//        
+//        let headers: HTTPHeaders = [
+//            "Authorization": "\(HTOS_API.hpaToken.token_type) \(HTOS_API.hpaToken.access_token)",
+//            "Content-Type": "application/x-www-form-urlencoded"
+//        ]
+//        let param = [
+//            "filter": "(&(xdt>=201401010000+0900)(htype=ccr))",
+//            "base": "\(hpo)huid=\(huid),dc=htos",
+//            "verbose": "false"
+//        ]
+//        
+//        Alamofire.request(url, method: .post, parameters: param, headers: headers).responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                completion(json)
+//            case .failure(let error):
+//                completion(nil)
+//            }
+//        }
+//    }
     
     static func getHPADataWithFHIR(user: String?, completion: @escaping (_ datas: JSON?) -> ()) {
         guard let user = user else {
@@ -286,7 +411,7 @@ class HTOS_API {
 //        let url = URL(string: "https://ict.idles.co.kr:8445/htos-fhir/fhir/Observation?identifier=\(user)&date=>=2009-01-01&date=<\(dateFormatter.string(from: Date()))")!
         let url = URL(string: "\(fhirBaseUrl)/Observation?")!
         let param = [
-            "identifier": "ict.demo.hongil4@gmail.com",
+            "identifier": uid,
             "date": ">=2009-01-01date:<2017-03-07"
         ]
         print(url.absoluteString)
@@ -463,11 +588,11 @@ enum HPAProvider {
             self = .NHIS
         case "uracle":
             self = .URACLE
-        case "snuh":
+        case "seoul_univ":
             self = .SNUH
         case "hk":
             self = .HEALTHKIT
-        case "ls":
+        case "lifelog":
             self = .LIFESEMANTICS
         case "gilh":
             self = .GILH
@@ -484,11 +609,11 @@ enum HPAProvider {
         case .URACLE:
             temp = "uracle"
         case .SNUH:
-            temp = "snuh"
+            temp = "seoul_univ"
         case .HEALTHKIT:
             temp = "hk"
         case .LIFESEMANTICS:
-            temp = "ls"
+            temp = "lifelog"
         case .GILH:
             temp = "gilh"
         default:
@@ -512,6 +637,18 @@ enum HPAProvider {
             temp = "라이프로그"
         case .GILH:
             temp = "길병원"
+        default:
+            temp = ""
+        }
+        return temp
+    }
+    func docType() -> String {
+        var temp: String
+        switch self {
+        case .NHIS, .SNUH, .HEALTHKIT, .GILH:
+            temp = "ccr"
+        case .URACLE, .LIFESEMANTICS:
+            temp = "lifelog"
         default:
             temp = ""
         }

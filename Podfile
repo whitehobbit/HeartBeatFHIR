@@ -7,7 +7,6 @@ target 'HeartBeatFHIR' do
   pod 'FHIR', :git => 'https://github.com/smart-on-fhir/Swift-FHIR.git'
   pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON', '~> 3.1'
-  pod 'SwiftyDropbox'
 
 end
 

@@ -13,6 +13,7 @@ import FHIR
 class DetailHealthKitVC: UIViewController {
 
     var heartRate: HKQuantitySample?
+    var hk_data: HKQuantitySample?
     fileprivate let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "M월 d일 a h:m"
@@ -25,17 +26,44 @@ class DetailHealthKitVC: UIViewController {
     @IBOutlet weak var heartRateLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var hk_dataTypeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        deviceName = heartRate?.device?.name != nil ?
-        "\((heartRate?.device?.name)!)" : ""
         
-        sourceName = heartRate?.sourceRevision.source.name != nil ? "\((heartRate?.sourceRevision.source.name)!)" : ""
-        heartRateLabel?.text = "\(Int((heartRate?.quantity.doubleValue(for: bpmUnit))!))bpm"
+        guard let hk_data = hk_data else {
+            return
+        }
+        var dataTypeText = ""
+        var dataValText = ""
+        switch hk_data.quantityType.identifier {
+        case HKQuantityTypeIdentifier.heartRate.rawValue:
+            dataTypeText = "Heart Rate"
+            dataValText = "\(Int(hk_data.quantity.doubleValue(for: bpmUnit)))"
+        case HKQuantityTypeIdentifier.bodyMass.rawValue:
+            dataTypeText = "Weight"
+            dataValText = "\(Int(hk_data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))))"
+        default:
+            break
+        }
         
-        dateLabel?.text = "\(dateFormatter.string(from: (heartRate?.startDate)!))"
+        deviceName = hk_data.device?.name ?? ""
+        sourceName = hk_data.sourceRevision.source.name
+        
+        titleLabel?.text = dataTypeText + " Detail"
+        hk_dataTypeLabel?.text = dataTypeText
+        heartRateLabel?.text = dataValText
+        dateLabel?.text = dateFormatter.string(from: hk_data.startDate)
         sourceLabel?.text = sourceName
+        
+//        deviceName = heartRate?.device?.name != nil ? "\((heartRate?.device?.name)!)" : ""
+//        
+//        sourceName = heartRate?.sourceRevision.source.name != nil ? "\((heartRate?.sourceRevision.source.name)!)" : ""
+//        heartRateLabel?.text = "\(Int((heartRate?.quantity.doubleValue(for: bpmUnit))!))bpm"
+//        
+//        dateLabel?.text = "\(dateFormatter.string(from: (heartRate?.startDate)!))"
+//        sourceLabel?.text = sourceName
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,14 +77,17 @@ class DetailHealthKitVC: UIViewController {
     }
     
     
-    fileprivate func makeJsonFhirObservation(_ heartrate: HKQuantitySample?) -> Observation? {
-        let heartRate2Int: Int = Int((heartRate?.quantity.doubleValue(for: bpmUnit))!)
+    fileprivate func makeJsonFhirObservation(_ hkData: HKQuantitySample?) -> Observation? {
+        guard hkData?.quantityType.identifier != HKQuantityTypeIdentifier.heartRate.rawValue else {
+            return nil
+        }
+        let heartRate2Int: Int = Int((hkData?.quantity.doubleValue(for: bpmUnit))!)
         let device: String = deviceName
         //        let source: String = (heartRate?.sourceRevision.source.name)!
         let date: String = {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS:SZ"
-            return dateFormatter.string(from: (heartRate?.startDate)!)
+            return dateFormatter.string(from: (hkData?.startDate)!)
         }()
         let code: CodeableConcept? = CodeableConcept(json: [
             "coding":[
@@ -73,7 +104,7 @@ class DetailHealthKitVC: UIViewController {
         obs?.subject = Reference(json: ["reference" : "Patient/\(user["patientId"]!)"])
         obs?.valueQuantity = Quantity(json: [
             "value" : heartRate2Int,
-            "code" : "bpm"
+            "unit" : "bpm"
             ])
         obs?.text = Narrative(div: "<div>Heart Rate, \(heartRate2Int) bpm</div>", status: "generated")
         obs?.meta = Meta(json: nil)

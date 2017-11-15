@@ -7,16 +7,27 @@
 //
 
 import Foundation
+import FHIR
+import SwiftyJSON
+import HealthKit
 
 // MARK: Global Var
 // uesrInfo
-let user = [ "id" : "test@test.com", "password" : "test", "patientId" : "7", "familyName": "이", "givenName" : "진기", "telecom" : "82+ 10-7769-1093", "gender" : "남", "birthDate" : "1990-01-14" ]
+let user = [ "id" : "test@test.com",
+             "password" : "test",
+             "patientId" : "7",
+             "familyName": "홍", "givenName" : "길동",
+             "telecom" : "82+ 10-7769-1093",
+             "gender" : "남",
+             "birthDate" : "1990-01-14" ]
 var prefs = UserDefaults.standard
 var currentVersion = "0.0.1"
 var isLogined: Bool = false
 // HealthKit
 var bpmUnit = HKUnit(from: "count/min")
+
 var heartRates = [HKQuantitySample]()
+var weight = [HKQuantitySample]()
 var healthKitManager: HealthKitManager? = HealthKitManager()
 // FHIR
 let baseUrl = "http://hitlab.gachon.ac.kr:8888/gachon-fhir-server/baseDstu2"
@@ -36,8 +47,8 @@ func makeErrorMsg(name: String, msg: String) -> JSON {
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss.SSS"
         return dateFormatter.string(from: Date())
     }()
-    var dic = ["error": ["time": "\(errorTime)", "name": "\(name)", "message": "\(msg)"]]
-    var json = JSON(dic)
+    let dic = ["error": ["time": "\(errorTime)", "name": "\(name)", "message": "\(msg)"]]
+    let json = JSON(dic)
     return json
 }
 
@@ -68,5 +79,15 @@ extension UIView {
         set {
             layer.borderColor = newValue?.cgColor
         }
+    }
+}
+
+extension HKSample {
+    func toJSON() -> JSON? {
+        var json: JSON?
+        let tmp = ["class": "\(type(of: self))", "uuid": "\(self.uuid)", "metaData": "\(self.metadata)", "sourceRevision": "\(self.sourceRevision.source.name)", "device": "\(self.device?.name ?? nil)", "type": "\(self.sampleType.identifier)", "startDate": "\(self.startDate)", "endDate": "\(self.endDate)"]
+        json = JSON(tmp)
+        
+        return json
     }
 }

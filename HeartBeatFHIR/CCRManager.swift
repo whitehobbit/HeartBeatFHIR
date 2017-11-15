@@ -68,14 +68,29 @@ open class CCRManager {
     }
     
     func createResultTag(_ healthKitData: HKQuantitySample) -> CCRResult {
+        
+        var description: CCRDescription
+        var value: String
+        var unit: String
+        
+        if HKQuantityTypeIdentifier.heartRate.rawValue == healthKitData.quantityType.identifier {
+            description = CCRDescription(CCRText("심박"))
+            value = "\(Int(healthKitData.quantity.doubleValue(for: bpmUnit)))"
+            unit = "bpm"
+        } else {
+            description = CCRDescription(CCRText("체중"))
+            value = "\(Int(healthKitData.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))))"
+            unit = "Kg"
+        }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYYMMddHHmmss"
         let date = healthKitData.startDate
-        let value = "\(Int(healthKitData.quantity.doubleValue(for: bpmUnit)))"
-        let device = healthKitData.device?.name ?? "#"
+//        let value = "\(Int(healthKitData.quantity.doubleValue(for: bpmUnit)))"
+        let device = healthKitData.device?.name ?? healthKitData.sourceRevision.source.name
 
         let dateTime = CCRDateTime(type: CCRType("측정일시"), exactDateTime: CCRExactDateTime(date))
-        let result = CCRResult(dataObjectId: CCRDataObjectID("vitalsigns.\(dateFormatter.string(from: date))"), dateTime: dateTime, type: CCRType("\(device)"), description: CCRDescription(CCRText("심박")), test: createTestTag(date: date, value: value))
+        let result = CCRResult(dataObjectId: CCRDataObjectID("vitalsigns.\(dateFormatter.string(from: date))"), dateTime: dateTime, type: CCRType("\(device)"), description: description, test: createTestTag(date: date, value: value, unit: unit))
         return result
     }
     
@@ -86,5 +101,46 @@ open class CCRManager {
         let source = CCRSource(CCRActor(actorId: CCRActorID("2014.\(dateFormatter.string(from: date))"), actorRole: CCRActorRole(CCRText("Apple HealthKit"))))
         let testResult = CCRTestResult(value: CCRValue("\(value)"), units: CCRUnits(CCRUnit(unit)))
         return CCRTest(ccrDataObjectId: ccrDataObjectId, source: source, testResult: testResult)
+    }
+}
+
+enum HKIdentifier {
+    case heartrate, weight, none
+    
+    init(_ rawValue: HKQuantityTypeIdentifier) {
+        switch rawValue {
+        case HKQuantityTypeIdentifier.heartRate:
+            self = .heartrate
+        case HKQuantityTypeIdentifier.bodyMass:
+            self = .weight
+        default:
+            self = .none
+        }
+    }
+    
+    func rawData() -> String {
+        var tmp: String
+        switch self {
+        case .heartrate:
+            tmp = "heartrate"
+        case .weight:
+            tmp = "weight"
+        default:
+            tmp = ""
+        }
+        return tmp
+    }
+    
+    func toString() -> String {
+        var tmp: String
+        switch self {
+        case .heartrate:
+            tmp = "Heart Rate"
+        case .weight:
+            tmp = "Weight"
+        default:
+            tmp = ""
+        }
+        return tmp
     }
 }

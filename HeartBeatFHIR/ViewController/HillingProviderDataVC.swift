@@ -17,18 +17,24 @@ class HillingProviderDataVC: UIViewController, UITableViewDelegate, UITableViewD
     var type: HPAProvider = .NONE
     var providerData = [String: [Date: String]]()
     var sources = [String]()
-    
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setData("ict.demo.hongil4@gmail.com", provider: self.type.rawData())
+        self.title = type.toString()
+        self.setTableSetting()
+        self.setActivityIndicator()
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = type.toString()
-        self.setTableSetting()
-        self.setActivityIndicator()
+        self.setData(uid, provider: self.type)
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,6 +89,11 @@ class HillingProviderDataVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func refresh(sender: Any) {
+        self.setData(uid, provider: self.type)
+        refreshControl.endRefreshing()
+    }
+    
     // MARK: - 테이블셀 사이즈에 맞춰 테이블뷰 조절
     func tableViewAutoHeight() {
         if self.tableView.contentSize.height < self.tableView.frame.height {
@@ -102,81 +113,128 @@ class HillingProviderDataVC: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - setData
     
-    func setData(_ user: String = "ict.demo.hongil4@gmail.com", provider: String) {
+    func setData(_ user: String = uid, provider: HPAProvider) {
         self.startActivityIndicator()
-
-        let docType = self.type == HPAProvider.LIFESEMANTICS ? "lifelog" : "ccr"
-        print(docType)
-        HTOS_API.getHpaHandle(user: user, provider: provider, type: docType) { json in
-            guard let json = json else {
-                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "HpaHandle의 헤더와 파라미터를 확인하세요.")
-                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
-                self.stopActivityIndicator()
-                return
-            }
-            guard let count = json["count"].int, let handles = json.rawString() else {
-                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "HpaHandle의 헤더와 파라미터를 확인하세요.")
-                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
-                self.stopActivityIndicator()
-                return
-            }
-            guard count != 0 else {
-                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
-                print(error["error"])
+        
+        HTOS_API.getHPAData(user: uid, provider: provider) { data in
+            guard let data = data else {
+                let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
                 self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
                 self.stopActivityIndicator()
                 return
             }
             
-            HTOS_API.getHpaData(user: user, handles: handles) { datas in
-                guard let data = datas else {
-                    let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
-                    self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
-                    self.stopActivityIndicator()
-                    return
-                }
-
-                guard let docs = data["documents"].array else {
-                    let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "documents가 존재하지 않습니다.")
-                    self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
-                    self.stopActivityIndicator()
-                    return
+            guard let count = data["count"].int, count != 0 else {
+                let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
+                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+                self.stopActivityIndicator()
+                return
+            }
+            
+            guard let docs = data["documents"].array else {
+                let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "documents가 존재하지 않습니다.")
+                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+                self.stopActivityIndicator()
+                return
+            }
+            
+            let dateFormatYYMMdd = DateFormatter()
+            dateFormatYYMMdd.dateFormat = "YY. MM. dd"
+            let dateFormatYYYYMMddHHmmss = DateFormatter()
+            dateFormatYYYYMMddHHmmss.dateFormat = "YYYYMMddHHmmss"
+            
+            for doc in docs {
+                guard  let document = Documents(doc) else {
+                    continue
                 }
                 
-                let dateFormatYYMMdd = DateFormatter()
-                dateFormatYYMMdd.dateFormat = "YY. MM. dd"
-                let dateFormatYYYYMMddHHmmss = DateFormatter()
-                dateFormatYYYYMMddHHmmss.dateFormat = "YYYYMMddHHmmss"
-                
-                for doc in docs {
-                    guard  let document = Documents(doc) else {
-                        continue
-                    }
+                for result in document.results {
+                    print(result.oid)
+                    let tmp = result.oid.replacingOccurrences(of: "vitalsigns.", with: "")
+                    print(tmp)
+                    let date = dateFormatYYYYMMddHHmmss.date(from: tmp)!
                     
-                    for result in document.results {
-                        print(result.oid)
-                        let tmp = result.oid.replacingOccurrences(of: "vitalsigns.", with: "")
-                        print(tmp)
-                        let date = dateFormatYYYYMMddHHmmss.date(from: tmp)!
-                        
-                        if !(self.sources.contains(result.type)) {
-                            self.sources.append(result.type)
-                            self.providerData[result.type] = [Date: String]()
-                        }
-                        self.providerData[result.type]?[date] = "\(result.description) \(result.value) \(result.unit)"
+                    if !(self.sources.contains(result.type)) {
+                        self.sources.append(result.type)
+                        self.providerData[result.type] = [Date: String]()
                     }
+                    self.providerData[result.type]?[date] = "\(result.description) \(result.value) \(result.unit)"
                 }
-                
+            }
+            
+            self.sources.sort()
+            self.stopActivityIndicator()
+            self.reloadTable()
+            
+        }
+
+//        HTOS_API.getHpaHandle(user: uid, provider: provider) { json in
+//            guard let json = json else {
+//                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "HpaHandle의 헤더와 파라미터를 확인하세요.")
+//                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+//                self.stopActivityIndicator()
+//                return
+//            }
+//            guard let count = json["count"].int, let handles = json.rawString() else {
+//                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "HpaHandle의 헤더와 파라미터를 확인하세요.")
+//                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+//                self.stopActivityIndicator()
+//                return
+//            }
+//            guard count != 0 else {
+//                let error = makeErrorMsg(name: "GET_HPAHANDLE_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
+//                print(error["error"])
+//                self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+//                self.stopActivityIndicator()
+//                return
+//            }
+//            
+//            HTOS_API.getHpaData(user: user, handles: handles) { datas in
+//            
+//                print(handles)
+//                guard let data = datas else {
+//                    let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "해당하는 데이터가 존재하지 않습니다.")
+//                    self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+//                    self.stopActivityIndicator()
+//                    return
+//                }
+//                print(data)
+//                guard let docs = data["documents"].array else {
+//                    let error = makeErrorMsg(name: "GET_HPADATA_ERROR", msg: "documents가 존재하지 않습니다.")
+//                    self.setAlert(title: error["error"]["name"].string!, message: error["error"]["message"].string!)
+//                    self.stopActivityIndicator()
+//                    return
+//                }
+//                
+//                let dateFormatYYMMdd = DateFormatter()
+//                dateFormatYYMMdd.dateFormat = "YY. MM. dd"
+//                let dateFormatYYYYMMddHHmmss = DateFormatter()
+//                dateFormatYYYYMMddHHmmss.dateFormat = "YYYYMMddHHmmss"
 //                
 //                for doc in docs {
-//                    print("INFO: \(doc.rawString())")
+//                    guard  let document = Documents(doc) else {
+//                        continue
+//                    }
+//                    
+//                    for result in document.results {
+//                        print(result.oid)
+//                        let tmp = result.oid.replacingOccurrences(of: "vitalsigns.", with: "")
+//                        print(tmp)
+//                        let date = dateFormatYYYYMMddHHmmss.date(from: tmp)!
+//                        
+//                        if !(self.sources.contains(result.type)) {
+//                            self.sources.append(result.type)
+//                            self.providerData[result.type] = [Date: String]()
+//                        }
+//                        self.providerData[result.type]?[date] = "\(result.description) \(result.value) \(result.unit)"
+//                    }
 //                }
-//
-                self.sources.sort()
-                self.stopActivityIndicator()
-                self.reloadTable()
-            }
-        }
+//                
+//                self.sources.sort()
+//                self.stopActivityIndicator()
+//                self.reloadTable()
+//            }
+//        }
     }
     
     // MARK: - Navigation

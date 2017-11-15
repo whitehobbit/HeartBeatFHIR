@@ -1,16 +1,13 @@
 PODS:
-  - Alamofire (4.0.1)
+  - Alamofire (4.3.0)
   - FHIR (2.8)
   - SwiftCharts (0.5.1)
-  - SwiftyDropbox (4.1.1):
-    - Alamofire (~> 4.0.1)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - FHIR (from `https://github.com/smart-on-fhir/Swift-FHIR.git`)
   - SwiftCharts (~> 0.5)
-  - SwiftyDropbox
   - SwiftyJSON (~> 3.1)
 
 EXTERNAL SOURCES:
@@ -23,12 +20,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/smart-on-fhir/Swift-FHIR.git
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   FHIR: ca44db7eb05a8a82b9ae32be95f8632e2e068fb2
   SwiftCharts: d263289cdc7fc955fef54ae3bc6529f696e69933
-  SwiftyDropbox: dfcd4d308d32d74729255b48833db61acdfb9c23
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: f0d08519c5f37d3d03cfdffa53320d844e30892c
+PODFILE CHECKSUM: 15b95a4e29f8ffd450ba3b823888a2612ada761e
 
 COCOAPODS: 1.1.1

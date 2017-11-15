@@ -140,7 +140,7 @@ class HillingPlatformTableVC: UIViewController, UITableViewDelegate, UITableView
             //            print(isResistered)
             
             if isResistered {
-                HTOS_API.connectRepository(user: "ict.demo.hongil4@gmail.com") { (data) in
+                HTOS_API.connectRepository(user: "z@gmail.com") { (data) in
                     
                     let url = URL(string: data!)!
                     let controller = self as UIViewController

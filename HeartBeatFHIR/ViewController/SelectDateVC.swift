@@ -17,6 +17,8 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     let activityIndicator = UIActivityIndicatorView()
     
     var heartRates = [HKQuantitySample?]()
+    var hk_datas = [HKQuantitySample?]()
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM월 dd일 a hh:mm"
@@ -28,7 +30,8 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         self.title = {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YY. MM. dd"
-            return dateFormatter.string(from: heartRates.first!!.startDate)
+//            return dateFormatter.string(from: heartRates.first!!.startDate)
+            return dateFormatter.string(from: hk_datas.first!!.startDate) ///
         }()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -58,15 +61,36 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return (heartRates.count)
-        //return 1
+//        return (heartRates.count)
+        return (hk_datas.count) ///
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectDataCell", for: indexPath)
-        let heartRate = heartRates[indexPath.row]
-        cell.textLabel?.text = "\(heartRate!.quantity.doubleValue(for: bpmUnit))"
-        cell.detailTextLabel?.text = "\(self.dateFormatter.string(from: (heartRates[indexPath.row]?.startDate)!))"
+        var textLabel = ""
+        var detailLabel = ""
+        guard let hk_data = hk_datas[indexPath.row] else {
+            return cell
+        }
+        print(hk_data.quantityType.identifier)
+        switch hk_data.quantityType.identifier {
+        case HKQuantityTypeIdentifier.heartRate.rawValue:
+            textLabel = "\(hk_data.quantity.doubleValue(for: bpmUnit))"
+        case HKQuantityTypeIdentifier.bodyMass.rawValue:
+            print("weight")
+            textLabel = "\(hk_data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo)))"
+        default:
+            print("default")
+        }
+        
+        detailLabel = "\(dateFormatter.string(from: hk_data.startDate))"
+        
+        cell.textLabel?.text = textLabel
+        cell.detailTextLabel?.text = detailLabel
+//        let heartRate = heartRates[indexPath.row]
+//        print(heartRate?.quantityType.identifier == HKQuantityTypeIdentifier.heartRate.rawValue)
+//        cell.textLabel?.text = "\(heartRate!.quantity.doubleValue(for: bpmUnit))"
+//        cell.detailTextLabel?.text = "\(self.dateFormatter.string(from: (heartRates[indexPath.row]?.startDate)!))"
         return cell
     }
     
@@ -86,9 +110,9 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             return
         }
         
-        guard !heartRates.isEmpty else {
+        guard !hk_datas.isEmpty else {
             
-            errorAlert("heartRates is empty")
+            errorAlert("hk_data is empty")
             return
         }
         
@@ -102,14 +126,14 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         let ccrM = CCRManager()
         var hkd = [HKQuantitySample]()
-        for heartRate in heartRates {
-            hkd.append(heartRate!)
+        for hkData in hk_datas {
+            hkd.append(hkData!)
         }
         let ccr = ccrM.convertCCR(hkDatas: hkd)
         
         
         
-        HTOS_API.uploadHPA(name: name, user: "ict.demo.hongil4@gmail.com", ccr: ccr) { data in
+        HTOS_API.uploadHPA(name: name, user: uid, ccr: ccr) { data in
             guard let data = data else {
                 errorAlert("response nil")
                 return
@@ -156,9 +180,12 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         if segue.identifier == "selectToDetail" {
             let destiantionVC = segue.destination as! DetailHealthKitVC
             let myIndexPath = self.tableView.indexPathForSelectedRow
-            let row = myIndexPath?.row
             
-            destiantionVC.heartRate = self.heartRates[row!]
+            guard let row = myIndexPath?.row else{
+                return
+            }
+            
+            destiantionVC.hk_data = self.hk_datas[row]
         }
     }
  

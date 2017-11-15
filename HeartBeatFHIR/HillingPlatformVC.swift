@@ -11,10 +11,14 @@ import FHIR
 import Alamofire
 import SwiftyJSON
 
+let uid = "ict.demo.hongil4@gmail.com"
+let huid = "ict.demo.hongil4@gmail.com"
+
 class HillingPlatformVC: UIViewController {
     
     @IBOutlet weak var hpaButton: UIButton!
     
+    @IBOutlet weak var btnView: UIView!
     @IBOutlet weak var nhisBtn: UIButton!
     @IBOutlet weak var uracleBtn: UIButton!
     @IBOutlet weak var snuhBtn: UIButton!
@@ -41,8 +45,12 @@ class HillingPlatformVC: UIViewController {
         super.viewWillAppear(animated)
 //        self.getFHIR()
         connectHPA = prefs.bool(forKey: "connectHpa")
+//        connectHPA = true
         if connectHPA {
             hpaButton.isEnabled = false
+            btnView.isHidden = false
+        } else {
+            btnView.isHidden = true
         }
         setActivityIndicator()
     }
@@ -57,13 +65,13 @@ class HillingPlatformVC: UIViewController {
             return
         }
         var isResistered = false
-        HTOS_API.registerHpaToken(user: user["id"]) { (json, flag) in
+        HTOS_API.registerHpaToken(user: uid) { (json, flag) in
             print(json)
             isResistered = flag
 //            print(isResistered)
             
             if isResistered {
-                HTOS_API.connectRepository(user: "ict.demo.hongil4@gmail.com") { (data) in
+                HTOS_API.connectRepository(user: uid) { (data) in
 
                     let url = URL(string: data!)!
                     let controller = self as UIViewController
@@ -120,21 +128,16 @@ class HillingPlatformVC: UIViewController {
         
         switch sender {
         case nhisBtn:
-            print("INFO: clicked nhicBtn")
             type = .NHIS
         case snuhBtn:
-            print("INFO: clicked snuhBtn")
             type = .SNUH
         case uracleBtn:
-            print("INFO: clicked uracleBtn")
             type = .URACLE
         case lsBtn:
             type = .LIFESEMANTICS
         case healthKitBtn:
-            print("INFO: clicked healthKitBtn")
             type = .HEALTHKIT
         default:
-            print("INFO: default")
             type = .NONE
         }
         print("INFO: \(type.toString()) clicked")
@@ -143,7 +146,7 @@ class HillingPlatformVC: UIViewController {
 //        destinationVC.providerData = self.providerData
     }
     
-    func getHPAData(_ user: String = "ict.demo.hongil4@gmail.com", sender: UIButton) {
+    func getHPAData(_ user: String = huid, sender: UIButton) {
         var type: HPAProvider
         self.providerData.removeAll()
         startActivityIndicator()
@@ -160,7 +163,9 @@ class HillingPlatformVC: UIViewController {
             type = .NONE
         }
         print(type.rawData())
-        HTOS_API.getHPAData(user: user, provider: type.rawData()) { datas in
+        print(type.docType())
+        HTOS_API.getHPAData(user: user, provider: type) { datas in
+//        HTOS_API.getHPAData(user: user, provider: type.rawData()) { datas in
             guard let datas = datas else {
                 self.errorAlert("ERROR: callback is NULL")
                 return

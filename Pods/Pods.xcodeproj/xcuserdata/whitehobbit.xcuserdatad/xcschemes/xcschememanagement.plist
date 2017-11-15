@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyDropbox.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C540A2D8BE95A7C67E75861DB144DA8</key>
+		<key>42F18730A7021B8D6B6F2136C33F40CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3254E243E5403DC0B337833E5852A4DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>699787FF84074B5D4904F6A78DEA0462</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6A80D47C3E463E4CB938C570AED9B4BF</key>
+		<key>4454E39730CAAF299F52AC44AF1B46BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>BD414F23103DFE5F09AEED8B4B26527E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD44E370F3286020E4CBC5A135895AEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

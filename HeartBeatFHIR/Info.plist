@@ -22,12 +22,39 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSHealthShareUsageDescription</key>
+	
+<!--    <key>NSAppTransportSecurity</key>-->
+<!--    <dict>-->
+<!--        <key>NSAllowsArbitraryLoads</key>-->
+<!--        <true/>-->
+<!--    </dict>-->
+<!--    -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>localhost</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <!-- Optional: Specify minimum TLS version -->
+                <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                <string>TLSv1.1</string>
+                <key>NSRequiresCertificateTransparency</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
+    
+    <key>NSHealthShareUsageDescription</key>
 	<string>heartRate</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>heartRate</string>

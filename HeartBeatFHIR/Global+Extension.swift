@@ -16,10 +16,10 @@ import HealthKit
 let user = [ "id" : "test@test.com",
              "password" : "test",
              "patientId" : "7",
-             "familyName": "홍", "givenName" : "길동",
-             "telecom" : "82+ 10-7769-1093",
-             "gender" : "남",
-             "birthDate" : "1990-01-14" ]
+             "familyName": "임", "givenName" : "하빈",
+             "telecom" : "82+ 10-4135-5524",
+             "gender" : "male",
+             "birthDate" : "1991-10-08" ]
 var prefs = UserDefaults.standard
 var currentVersion = "0.0.1"
 var isLogined: Bool = false

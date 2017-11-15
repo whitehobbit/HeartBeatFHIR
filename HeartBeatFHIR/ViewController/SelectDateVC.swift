@@ -72,7 +72,7 @@ class SelectDateVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         guard let hk_data = hk_datas[indexPath.row] else {
             return cell
         }
-        print(hk_data.quantityType.identifier)
+//        print(hk_data.quantityType.identifier)
         switch hk_data.quantityType.identifier {
         case HKQuantityTypeIdentifier.heartRate.rawValue:
             textLabel = "\(hk_data.quantity.doubleValue(for: bpmUnit))"

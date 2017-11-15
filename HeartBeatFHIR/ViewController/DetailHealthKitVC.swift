@@ -9,6 +9,8 @@
 import UIKit
 import HealthKit
 import FHIR
+import SwiftyJSON
+import Alamofire
 
 class DetailHealthKitVC: UIViewController {
 
@@ -22,6 +24,8 @@ class DetailHealthKitVC: UIViewController {
     let activityIndicator = UIActivityIndicatorView()
     var deviceName: String = ""
     var sourceName: String = ""
+    var value: Double = 0.0
+    var unit: String = ""
     
     @IBOutlet weak var heartRateLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -40,10 +44,14 @@ class DetailHealthKitVC: UIViewController {
         switch hk_data.quantityType.identifier {
         case HKQuantityTypeIdentifier.heartRate.rawValue:
             dataTypeText = "Heart Rate"
-            dataValText = "\(Int(hk_data.quantity.doubleValue(for: bpmUnit)))"
+            self.value = hk_data.quantity.doubleValue(for: bpmUnit)
+            dataValText = "\(Int(self.value))"
+            self.unit = "bpm"
         case HKQuantityTypeIdentifier.bodyMass.rawValue:
             dataTypeText = "Weight"
-            dataValText = "\(Int(hk_data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))))"
+            self.value = hk_data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+            dataValText = "\(Int(self.value))"
+            self.unit = "Kg"
         default:
             break
         }
@@ -116,7 +124,38 @@ class DetailHealthKitVC: UIViewController {
     }
     
     @IBAction func postAPIServer(_ sender: Any) {
-        startActivityIndicator()
+        let serverUrl = "http://192.9.44.103:8080/api/hkfhir"
+        let parameter = createHKFHIR(hk_data)!
+        print(JSON(parameter))
+        let header: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        Alamofire.request(serverUrl, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                self.setAlert(title: "SUCCESS", message: "성공")
+            case .failure(let err):
+                self.setAlert(title: "ERROR", message: err.humanized)
+                
+            }
+        
+//        let url = "http://192.9.44.103:8080"
+//
+//            Alamofire.request(url, method: .get).responseJSON{ response in
+//                print(response.request?.description)
+//                switch response.result {
+//                case .success(let value):
+//                    print(JSON(value))
+//                case .failure(let err):
+//                    print(err)
+//
+//            }
+        }
+        
+        
+//        startActivityIndicator()
+        
     }
     
     @IBAction func clickUpload(_ sender: AnyObject) {
@@ -156,6 +195,74 @@ class DetailHealthKitVC: UIViewController {
         self.activityIndicator.stopAnimating()
     }
     
+    func createHKFHIR(_ hkData: HKQuantitySample?) -> FHIRJSON? {
+        guard let hkData = hkData else {
+            return nil
+        }
+        let tmp = [
+            "hkObservation": createHKObservation(hkData),
+            "hkPatient": createHKPatient(hkData)
+        ]
+        return tmp
+    }
+    
+    func createHKObservation(_ hkData: HKQuantitySample) -> FHIRJSON {
+        let startDate: String = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS:SZ"
+            return dateFormatter.string(from: (hkData.startDate))
+        }()
+        let endDate: String = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS:SZ"
+            return dateFormatter.string(from: (hkData.endDate))
+        }()
+        
+        let hkObservation = [
+            "className": "\(type(of: hkData) )",
+            "startDate": "\(startDate)",
+            "endDate": "\(endDate)",
+            "metaData": "\(hkData.metadata?.description ?? "nil")",
+            "uuid": "\(hkData.uuid.uuidString)",
+            "device": "\(hkData.device?.name)",
+            "type": "\(hkData.sampleType.identifier)",
+            "sourceRevision": "\(hkData.sourceRevision.source.name)",
+            "value": self.value,
+            "unit": "\(self.unit)"
+            ] as [String : Any]
+        
+        return hkObservation
+    }
+    
+    func createHKPatient(_ hkData: HKQuantitySample) -> FHIRJSON {
+        
+        let familyName = user["familyName"]
+        var givenName = [String]()
+        givenName.append(user["givenName"]!)
+        var name: [String: Any] = ["family": familyName!, "given": givenName]
+        var names = [Any]()
+        names.append(name)
+        let tel = user["telecom"]!
+        let gender = user["gender"]!
+        let birthDate = user["birthDate"]!
+        let telecom = [ "system": "phone", "value": tel, "use": "mobile"]
+        var telecoms = [Any]()
+        telecoms.append(telecom)
+        let address = ["city": "인천", "country": "대한민국"]
+        var addresses = [Any]()
+        addresses.append(address)
+        let hkPatient = [
+            "metaData": "nil",
+            "name": names,
+            "telecom": telecoms,
+            "gender": gender,
+            "birthDate": birthDate,
+            "address": addresses
+            ] as [String : Any]
+        
+        return hkPatient
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -165,5 +272,11 @@ class DetailHealthKitVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    // MARK: - Alert
+    func setAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+    }
 }

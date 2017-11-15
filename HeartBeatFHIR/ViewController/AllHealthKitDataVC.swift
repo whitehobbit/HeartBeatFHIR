@@ -62,7 +62,7 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
         case 1:
             return weightDateKeys.count
         default:
-            return 0
+            return 1
         }
         
 //        return heartRateDateKeys.count
@@ -161,9 +161,8 @@ class AllHealthKitDataVC: UIViewController, UITableViewDelegate, UITableViewData
             self.heartRateDateKeys.append(beforeDate!)
             self.heartRateDateDic[beforeDate!] = "\(minHeartRate) - \(maxHeartRate)"
             self.reloadTable()
-
         }
-        
+        startActivityIndicator()
         healthKitManager?.readWeights { (results, error) in
             guard let hkDatas = results as! [HKQuantitySample]? else {
                 print("ERROR: hkDatas")

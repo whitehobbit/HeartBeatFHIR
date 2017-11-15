@@ -115,6 +115,10 @@ class DetailHealthKitVC: UIViewController {
         return obs
     }
     
+    @IBAction func postAPIServer(_ sender: Any) {
+        startActivityIndicator()
+    }
+    
     @IBAction func clickUpload(_ sender: AnyObject) {
         startActivityIndicator()
         let obs = self.makeJsonFhirObservation(heartRate)

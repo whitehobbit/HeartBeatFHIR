@@ -10,7 +10,6 @@
 		D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D60193911DC9CC9B006312FC /* MyInfo.storyboard */; };
 		D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D601939D1DCAB530006312FC /* InfoPlist.strings */; };
 		D62454B81DC7520D00D61917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62454B71DC7520D00D61917 /* AppDelegate.swift */; };
-		D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454BB1DC7520D00D61917 /* Main.storyboard */; };
 		D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62454BE1DC7520D00D61917 /* Assets.xcassets */; };
 		D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */; };
 		D661153D1E650498006BB14C /* HillingPlatformVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661153C1E650498006BB14C /* HillingPlatformVC.swift */; };
@@ -21,7 +20,7 @@
 		D69561011E63F02700A230BC /* CCRTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69561001E63F02700A230BC /* CCRTags.swift */; };
 		D6A72AB51DC752A000DD2C66 /* MyInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */; };
 		D6A72ABB1DC752C600DD2C66 /* FhirServer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */; };
-		D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */; };
+		D6A72ABC1DC752C600DD2C66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72AB81DC752C600DD2C66 /* Main.storyboard */; };
 		D6A72ABE1DC752C600DD2C66 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */; };
 		D6A72AC81DC7532A00DD2C66 /* AllHealthKitDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC01DC7532A00DD2C66 /* AllHealthKitDataVC.swift */; };
 		D6A72AC91DC7532A00DD2C66 /* DetailHealthKitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A72AC11DC7532A00DD2C66 /* DetailHealthKitVC.swift */; };
@@ -45,15 +44,12 @@
 
 /* Begin PBXFileReference section */
 		669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartBeatFHIR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeartBeatFHIR/Pods-HeartBeatFHIR.debug.xcconfig"; sourceTree = "<group>"; };
-		D601938D1DC9A98B006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		D601938E1DC9A98B006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D60193921DC9CCAE006312FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyInfo.storyboard; sourceTree = "<group>"; };
 		D60193951DC9CD39006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MyInfo.strings; sourceTree = "<group>"; };
 		D601939C1DCAB530006312FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D601939F1DCAB733006312FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D62454B41DC7520D00D61917 /* HeartBeatFHIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartBeatFHIR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62454B71DC7520D00D61917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D62454BC1DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D62454BE1DC7520D00D61917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D62454C11DC7520D00D61917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D661153C1E650498006BB14C /* HillingPlatformVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HillingPlatformVC.swift; sourceTree = "<group>"; };
@@ -64,7 +60,7 @@
 		D69561001E63F02700A230BC /* CCRTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCRTags.swift; sourceTree = "<group>"; };
 		D6A72AB41DC752A000DD2C66 /* MyInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfoVC.swift; path = ViewController/MyInfoVC.swift; sourceTree = "<group>"; };
 		D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FhirServer.storyboard; sourceTree = "<group>"; };
-		D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HealthKit.storyboard; sourceTree = "<group>"; };
+		D6A72AB81DC752C600DD2C66 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		D6A72AC01DC7532A00DD2C66 /* AllHealthKitDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllHealthKitDataVC.swift; path = ViewController/AllHealthKitDataVC.swift; sourceTree = "<group>"; };
 		D6A72AC11DC7532A00DD2C66 /* DetailHealthKitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailHealthKitVC.swift; path = ViewController/DetailHealthKitVC.swift; sourceTree = "<group>"; };
@@ -183,9 +179,8 @@
 		D6A72AB61DC752B500DD2C66 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				D62454BB1DC7520D00D61917 /* Main.storyboard */,
 				D6A72AB71DC752C600DD2C66 /* FhirServer.storyboard */,
-				D6A72AB81DC752C600DD2C66 /* HealthKit.storyboard */,
+				D6A72AB81DC752C600DD2C66 /* Main.storyboard */,
 				D60193911DC9CC9B006312FC /* MyInfo.storyboard */,
 				D69560FE1E5569A800A230BC /* HillingServer.storyboard */,
 				D6A72ABA1DC752C600DD2C66 /* Setting.storyboard */,
@@ -308,10 +303,9 @@
 				D601939B1DCAB530006312FC /* InfoPlist.strings in Resources */,
 				D62454C21DC7520D00D61917 /* LaunchScreen.storyboard in Resources */,
 				D6A72ABE1DC752C600DD2C66 /* Setting.storyboard in Resources */,
-				D6A72ABC1DC752C600DD2C66 /* HealthKit.storyboard in Resources */,
+				D6A72ABC1DC752C600DD2C66 /* Main.storyboard in Resources */,
 				D62454BF1DC7520D00D61917 /* Assets.xcassets in Resources */,
 				D601938F1DC9CC9B006312FC /* MyInfo.storyboard in Resources */,
-				D62454BD1DC7520D00D61917 /* Main.storyboard in Resources */,
 				D69560FF1E5569A800A230BC /* HillingServer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,20 +411,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		D62454BB1DC7520D00D61917 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D62454BC1DC7520D00D61917 /* Base */,
-				D601938D1DC9A98B006312FC /* ko */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D62454C01DC7520D00D61917 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D62454C11DC7520D00D61917 /* Base */,
-				D601938E1DC9A98B006312FC /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -539,12 +523,11 @@
 			baseConfigurationReference = 669AC7D631D039B1E5CFC0FF /* Pods-HeartBeatFHIR.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
 				DEVELOPMENT_TEAM = E3K4HTC5RG;
 				INFOPLIST_FILE = HeartBeatFHIR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HKFHIR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -555,12 +538,11 @@
 			baseConfigurationReference = F01AFB0B180688B7DAB96C4D /* Pods-HeartBeatFHIR.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartBeatFHIR/HeartBeatFHIR.entitlements;
 				DEVELOPMENT_TEAM = E3K4HTC5RG;
 				INFOPLIST_FILE = HeartBeatFHIR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HeartBeatFHIR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitehobbit.HKFHIR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
